@@ -3,7 +3,7 @@ import { IconContext } from 'react-icons'
 const PageHero = () => {
   return (
     <main className=' flex flex-col justify-center h-[540px] p-5  text-white bg-background-blue-200 cursor-pointer  text-center select-none overflow-hidden'>
-      <div className='container  '>
+      <div className='container px-[20px]'>
         <IconContext.Provider
           value={{ className: 'shared-class', size: '128' }}
         >
@@ -15,7 +15,7 @@ const PageHero = () => {
             Lorem ipsum dolor sit amet consectetur.
           </h2>
         </div>
-        <button className='mt-[30px] py-3 px-8 bg-background-yellow text-lg rounded-[3px] text-text_black  font-[600] hover:bg-white'>
+        <button className='mt-[30px] py-3 px-8 bg-background-yellow text-lg rounded-[3px] text-text_black  font-[600] hover:bg-white duration-200'>
           Get Started
         </button>
       </div>
