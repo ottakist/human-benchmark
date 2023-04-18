@@ -3,7 +3,7 @@ import { BsLightningFill } from 'react-icons/bs'
 
 const Navbar = (): JSX.Element => {
   return (
-    <nav className='container flex justify-between items-start px-5 font-sans text-[18px] text'>
+    <nav className='container flex justify-between items-start px-5 font-sans text-[18px] leading-[18px] text'>
       <div className='flex items-center'>
         <NavButton
           active={true}
