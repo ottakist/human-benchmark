@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .container {
+    @apply max-w-[970px] w-full  my-0 mx-auto;
+  }
+  .icon path  {
+   
+    /* @apply w-[140px] h-[148px] */
+  }
+}

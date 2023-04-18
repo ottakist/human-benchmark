@@ -1,8 +1,12 @@
-import { useState } from 'react'
-function App (): JSX.Element {
-  const [count] = useState<number>(0)
-
-  return <div className='App'>{count}</div>
+import Navbar from './components/Navbar'
+import PageHero from './components/PageHero'
+function App(): JSX.Element {
+  return (
+    <>
+      <Navbar />
+      <PageHero />
+    </>
+  )
 }
 
 export default App
