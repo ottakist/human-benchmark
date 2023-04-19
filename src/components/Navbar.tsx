@@ -1,9 +1,13 @@
+// import { useState } from 'react'
 import NavButton from './NavButton'
+// import Sidebar from './Sidebar'
 import { BsLightningFill } from 'react-icons/bs'
+import { GiHamburgerMenu } from 'react-icons/gi'
 
 const Navbar = (): JSX.Element => {
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   return (
-    <nav className='container flex justify-between items-start px-[20px] font-sans text-[18px] leading-[18px] text'>
+    <nav className='container flex justify-between items-start px-[20px] font-sans text-[18px] leading-[18px] '>
       <div className='flex items-center'>
         <NavButton
           active={true}
@@ -12,30 +16,44 @@ const Navbar = (): JSX.Element => {
             icon: <BsLightningFill className=' text-fill_grey' />
           }}
         />
-        <NavButton
-          active={false}
-          values={{
-            title: 'dashboard',
-            icon: undefined
-          }}
-        />
+        <div className='hidden tablet:inline-block'>
+          <NavButton
+            active={false}
+            values={{
+              title: 'dashboard',
+              icon: undefined
+            }}
+          />
+        </div>
       </div>
-      <div className='flex'>
-        <NavButton
-          active={false}
-          values={{
-            title: 'login',
-            icon: undefined
+      <div className='tablet:hidden inline-block px-3 py-4'>
+        <button
+          onClick={() => {
+            // setIsSidebarOpen(true)
           }}
-        />
-        <NavButton
-          active={false}
-          values={{
-            title: 'sign in',
-            icon: undefined
-          }}
-        />
+        >
+          <GiHamburgerMenu />
+        </button>
       </div>
+      <div className='hidden tablet:inline-block'>
+        <div className='flex'>
+          <NavButton
+            active={false}
+            values={{
+              title: 'login',
+              icon: undefined
+            }}
+          />
+          <NavButton
+            active={false}
+            values={{
+              title: 'sign in',
+              icon: undefined
+            }}
+          />
+        </div>
+      </div>
+      {/* {isSidebarOpen && <Sidebar/>} */}
     </nav>
   )
 }

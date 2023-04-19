@@ -1,4 +1,3 @@
-
 // BsFillLightningFill
 // BsLightning
 interface buttonProps {
@@ -12,7 +11,8 @@ const NavButton = ({ active, values }: buttonProps): JSX.Element => {
       className={`flex items-center px-[12px] py-[15px] w-fit uppercase ${
         active ? 'bg-background-gray-300' : 'bg-white'
       }
-         hover:bg-background-gray-300 duration-200`}
+         hover:bg-background-gray-300 duration-200
+         `}
     >
       {values.icon}
       {values.title} {active}
@@ -20,3 +20,4 @@ const NavButton = ({ active, values }: buttonProps): JSX.Element => {
   )
 }
 export default NavButton
+// ${values.icon === undefined ? 'hidden tablet:inline-block' : ' '}

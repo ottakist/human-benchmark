@@ -3,15 +3,15 @@ import { IconContext } from 'react-icons'
 const PageHero = () => {
   return (
     <main className=' flex flex-col justify-center h-[540px] p-5  text-white bg-background-blue-200 cursor-pointer  text-center select-none overflow-hidden'>
-      <div className='container px-[20px]'>
+      <div className='container tablet:px-[20px]'>
         <IconContext.Provider
           value={{ className: 'shared-class', size: '128' }}
         >
           <BsLightningFill className='fill-white mx-auto' />
         </IconContext.Provider>
         <div className='mt-[30px] font-normal'>
-          <h1 className=' text-[80px]'>Human Benchmark</h1>
-          <h2 className='text-[24px]'>
+          <h1 className='text-[42px] tablet:text-[80px]'>Human Benchmark</h1>
+          <h2 className='text-[28px] tablet:text-[24px]'>
             Lorem ipsum dolor sit amet consectetur.
           </h2>
         </div>

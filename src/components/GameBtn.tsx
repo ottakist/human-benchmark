@@ -3,7 +3,7 @@ const GameBtn = () => {
   return (
     <a
       href='#'
-      className='grow-[1] shrink-[1] basis-[0%] text-center  p-[30px] mr-[20px]  cursor-pointer bg-white rounded-[5px] shadow-xl shadow-[#0000001a] hover:-translate-y-2 duration-200 group'
+      className=' block grow-[1] shrink-[1] basis-[0%] py-5  text-center cursor-pointer bg-white rounded-[5px] shadow-xl shadow-[#0000001a] hover:-translate-y-2 duration-200 group tablet:p-[30px] tablet:mr-[20px]'
     >
       <div className='mx-auto w-[100px] h-[100px]'>
         <BsLightningFill className=' fill-fill_blue opacity-50 p-5 w-full h-full group-hover:fill-orange-500  group-hover:opacity-100' />
