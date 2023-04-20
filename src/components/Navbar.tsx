@@ -1,14 +1,14 @@
 // import { useState } from 'react'
 import NavButton from './NavButton'
-// import Sidebar from './Sidebar'
+
 import { BsLightningFill } from 'react-icons/bs'
 import { GiHamburgerMenu } from 'react-icons/gi'
 
 const Navbar = (): JSX.Element => {
   // const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   return (
-    <nav className='container flex justify-between items-start px-[20px] font-sans text-[18px] leading-[18px] '>
-      <div className='flex items-center'>
+    <nav className='container flex justify-between items-start px-[10px] tablet:px-[20px]  '>
+      <div className='flex items-center tablet:px-[20px]'>
         <NavButton
           active={true}
           values={{

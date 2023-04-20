@@ -7,6 +7,7 @@ export default {
     fontFamily: {
       sans: ['Helvetica', 'Arial', 'sans-serif']
     },
+    fontWeight: { bold: 400 },
     screens: {
       tablet: '700px',
       // => @media (min-width: 700px) { ... }
@@ -27,7 +28,8 @@ export default {
             300: '#f2f2f2',
             400: '#e9e9e9',
             500: '#e6e8f4',
-            600: '#00000026'
+            600: '#00000026',
+            700: '#000000b3'
           },
           yellow: '#ffd154',
           blue: {

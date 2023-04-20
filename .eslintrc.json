@@ -3,7 +3,11 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "standard-with-typescript","plugin:react/jsx-runtime" ],
+  "extends": [
+    "plugin:react/recommended",
+    "standard-with-typescript",
+    "plugin:react/jsx-runtime"
+  ],
   // "airbnb"
   "overrides": [],
   "parserOptions": {
@@ -19,7 +23,8 @@
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/triple-slash-reference": "off",
     "@typescript-eslint/space-before-function-paren": "off",
-    "eol-last":"off",
+    "@typescript-eslint/quotes": "off",
+    "eol-last": "off",
     "quotes": "off",
     "linebreak-style": "off",
     "react/jsx-props-no-spreading": "off",

@@ -8,7 +8,7 @@ const NavButton = ({ active, values }: buttonProps): JSX.Element => {
   return (
     <a
       href='/'
-      className={`flex items-center px-[12px] py-[15px] w-fit uppercase ${
+      className={`flex items-center border-b-[2px]   px-[12px] py-[15px]  font-sans text-[18px] leading-[18px]  uppercase ${
         active ? 'bg-background-gray-300' : 'bg-white'
       }
          hover:bg-background-gray-300 duration-200
@@ -20,4 +20,3 @@ const NavButton = ({ active, values }: buttonProps): JSX.Element => {
   )
 }
 export default NavButton
-// ${values.icon === undefined ? 'hidden tablet:inline-block' : ' '}
