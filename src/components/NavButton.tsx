@@ -1,17 +1,24 @@
 // BsFillLightningFill
+
+import { useGlobalContext } from '../context'
+
 // BsLightning
 interface buttonProps {
   active: boolean
-  values: { title: string, icon?: JSX.Element }
+  values: { title: string; icon?: JSX.Element }
 }
 const NavButton = ({ active, values }: buttonProps): JSX.Element => {
+  const { closeModal } = useGlobalContext()
   return (
     <a
-      href='/'
-      className={`flex items-center border-b-[2px]   px-[12px] py-[15px]  font-sans text-[18px] leading-[18px]  uppercase ${
+      onClick={() => {
+        closeModal()
+      }}
+      href='#'
+      className={`flex items-center border-b-[2px]   px-[12px] py-[15px]  font-sans text-[18px] uppercase  leading-[18px] ${
         active ? 'bg-background-gray-300' : 'bg-white'
       }
-         hover:bg-background-gray-300 duration-200
+         duration-200 hover:bg-background-gray-300
          `}
     >
       {values.icon}

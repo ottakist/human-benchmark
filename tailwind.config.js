@@ -2,6 +2,7 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   mode: 'jit',
+  tailwindConfig: './styles/tailwind.config.js',
   darkMode: 'class',
   theme: {
     fontFamily: {
@@ -21,6 +22,9 @@ export default {
         fill_grey: '#cdcccc',
         fill_blue: '#2b87d1',
         text_black: '#333333',
+        boxShadow: {
+          '2xl': '0px 12px 15px rgba(0, 0, 0, 0.07) ;'
+        },
         background: {
           gray: {
             100: '#ffffff',

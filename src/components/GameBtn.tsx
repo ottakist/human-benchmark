@@ -3,13 +3,13 @@ const GameBtn = () => {
   return (
     <a
       href='#'
-      className=' block grow-[1] shrink-[1] basis-[0%] py-5   text-center cursor-pointer bg-white rounded-[5px] shadow-xl shadow-[#0000001a] hover:-translate-y-2 duration-200 group tablet:p-[30px] tablet:mr-[20px]'
+      className=' group block shrink-[1] grow-[1] basis-[0%]   cursor-pointer rounded-[5px] bg-white py-5 text-center shadow-[#0000001a] duration-200 hover:-translate-y-2 hover:shadow-2xl tablet:mr-[20px] tablet:p-[30px]'
     >
-      <div className='mx-auto w-[100px] h-[100px]'>
-        <BsLightningFill className=' fill-fill_blue opacity-50 p-5 w-full h-full group-hover:fill-orange-500  group-hover:opacity-100' />
+      <div className='mx-auto h-[100px] w-[100px]'>
+        <BsLightningFill className=' h-full w-full fill-fill_blue p-5 opacity-50 group-hover:fill-orange-500  group-hover:opacity-100' />
       </div>
       <h3 className=' text-[24px]'>Reaction Time</h3>
-      <p className='text-[18px] mt-5 mb-2.5'> Lorem ipsum dolor.</p>
+      <p className='mb-2.5 mt-5 text-[18px]'> Lorem ipsum dolor.</p>
     </a>
   )
 }

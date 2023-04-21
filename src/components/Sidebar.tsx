@@ -1,14 +1,20 @@
 import { BsLightningFill } from 'react-icons/bs'
 import NavButton from './NavButton'
+import { useGlobalContext } from '../context'
 const Sidebar = () => {
+  const { isModalOpen } = useGlobalContext()
   return (
-    <div className=' fixed inset-0 bg-background-gray-700 z-50'>
-      <aside className=' bg-white absolute w-[250px] top-0 bottom-0'>
+    <div
+      className={` fixed  inset-0 z-50 ${
+        !isModalOpen ? 'hidden' : ' '
+      } bg-background-gray-700`}
+    >
+      <aside className=' absolute bottom-0 top-0 w-[250px] bg-white'>
         <NavButton
           active={false}
           values={{
             title: 'human benchmark',
-            icon: <BsLightningFill className=' text-fill_grey mr-2' />
+            icon: <BsLightningFill className=' mr-2 text-fill_grey' />
           }}
         />
         <NavButton
@@ -25,13 +31,13 @@ const Sidebar = () => {
             icon: undefined
           }}
         />
-          <NavButton
-            active={false}
-            values={{
-              title: 'login',
-              icon: undefined
-            }}
-          />
+        <NavButton
+          active={false}
+          values={{
+            title: 'login',
+            icon: undefined
+          }}
+        />
       </aside>
     </div>
   )

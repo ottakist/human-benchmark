@@ -1,13 +1,13 @@
-// import { useState } from 'react'
 import NavButton from './NavButton'
 
 import { BsLightningFill } from 'react-icons/bs'
 import { GiHamburgerMenu } from 'react-icons/gi'
+import { useGlobalContext } from '../context'
 
 const Navbar = (): JSX.Element => {
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const { openModal } = useGlobalContext()
   return (
-    <nav className='container flex justify-between items-start px-[10px] tablet:px-[20px]  '>
+    <nav className='container flex items-start justify-between px-[10px] tablet:px-[20px]  '>
       <div className='flex items-center tablet:px-[20px]'>
         <NavButton
           active={true}
@@ -26,10 +26,10 @@ const Navbar = (): JSX.Element => {
           />
         </div>
       </div>
-      <div className='tablet:hidden inline-block px-3 py-4'>
+      <div className='inline-block px-3 py-4 tablet:hidden'>
         <button
           onClick={() => {
-            // setIsSidebarOpen(true)
+            openModal()
           }}
         >
           <GiHamburgerMenu />

@@ -24,6 +24,7 @@
     "@typescript-eslint/triple-slash-reference": "off",
     "@typescript-eslint/space-before-function-paren": "off",
     "@typescript-eslint/quotes": "off",
+    "@typescript-eslint/member-delimiter-style": "off",
     "eol-last": "off",
     "quotes": "off",
     "linebreak-style": "off",
