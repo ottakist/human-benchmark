@@ -25,6 +25,7 @@
     "@typescript-eslint/space-before-function-paren": "off",
     "@typescript-eslint/quotes": "off",
     "@typescript-eslint/member-delimiter-style": "off",
+    "@typescript-eslint/no-confusing-void-expression": "off",
     "eol-last": "off",
     "quotes": "off",
     "linebreak-style": "off",

@@ -2,9 +2,10 @@ import { BsLightningFill } from 'react-icons/bs'
 import NavButton from './NavButton'
 import { useGlobalContext } from '../context'
 const Sidebar = () => {
-  const { isModalOpen } = useGlobalContext()
+  const { isModalOpen, closeModal } = useGlobalContext()
   return (
     <div
+      onClick={() => closeModal()}
       className={` fixed  inset-0 z-50 ${
         !isModalOpen ? 'hidden' : ' '
       } bg-background-gray-700`}

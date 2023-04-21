@@ -27,11 +27,7 @@ const Navbar = (): JSX.Element => {
         </div>
       </div>
       <div className='inline-block px-3 py-4 tablet:hidden'>
-        <button
-          onClick={() => {
-            openModal()
-          }}
-        >
+        <button onClick={() => openModal()}>
           <GiHamburgerMenu />
         </button>
       </div>
