@@ -1,14 +1,17 @@
-import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
-import PageHero from './components/PageHero'
-import GamesTable from './components/GamesTable'
+import { Navbar, Sidebar } from './components'
+import { Home, Error } from './pages'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
 function App(): JSX.Element {
   return (
     <>
-      <Sidebar/>
-      <Navbar />
-      <PageHero />
-      <GamesTable/>
+      <BrowserRouter>
+        <Sidebar />
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='*' element={<Error />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }

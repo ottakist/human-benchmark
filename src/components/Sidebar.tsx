@@ -12,28 +12,24 @@ const Sidebar = () => {
     >
       <aside className=' absolute bottom-0 top-0 w-[250px] bg-white'>
         <NavButton
-          active={false}
           values={{
             title: 'human benchmark',
             icon: <BsLightningFill className=' mr-2 text-fill_grey' />
           }}
         />
         <NavButton
-          active={false}
           values={{
             title: 'dashboard',
             icon: undefined
           }}
         />
         <NavButton
-          active={false}
           values={{
             title: 'sign in',
             icon: undefined
           }}
         />
         <NavButton
-          active={false}
           values={{
             title: 'login',
             icon: undefined
