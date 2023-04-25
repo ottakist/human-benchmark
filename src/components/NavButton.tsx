@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../context'
 // BsFillLightningFill
 // BsLightning
@@ -7,12 +8,12 @@ interface buttonProps {
 const NavButton = ({ values }: buttonProps): JSX.Element => {
   const { closeModal, activePage, setActivePage } = useGlobalContext()
   return (
-    <a
+    <Link
+      to={values.title === 'human benchmark' ? '/' : `${values.title}`}
       onClick={() => {
         closeModal()
         setActivePage(values.title)
       }}
-      href='#'
       className={`flex items-center border-b-[2px]   px-[12px] py-[15px]  font-sans text-[18px] uppercase  leading-[18px] ${
         activePage === values.title ? 'bg-background-gray-300' : 'bg-white'
       }
@@ -21,7 +22,7 @@ const NavButton = ({ values }: buttonProps): JSX.Element => {
     >
       {values.icon}
       {values.title}
-    </a>
+    </Link>
   )
 }
 export default NavButton

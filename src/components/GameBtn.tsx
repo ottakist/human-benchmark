@@ -14,7 +14,7 @@ const GameBtn = ({ icon: Icon, title, subtitle }: btnProps) => {
       <div className='mx-auto h-[100px] w-[100px]'>
         <Icon className=' h-full w-full fill-fill_blue stroke-white p-5 opacity-50 group-hover:fill-orange-500  group-hover:opacity-100' />
       </div>
-      <h3 className=' text-[24px]'>{title}</h3>
+      <h3 className=' text-[24px] font-bold'>{title}</h3>
       <p className='mb-2.5 mt-5 text-[18px]'>{subtitle}</p>
     </Link>
   )

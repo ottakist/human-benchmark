@@ -4,12 +4,10 @@ const PageHero = () => {
   return (
     <main className=' flex h-[540px] cursor-pointer select-none flex-col  justify-center overflow-hidden bg-background-blue-200  p-5 text-center text-white'>
       <div className='container tablet:px-[20px]'>
-        <IconContext.Provider
-          value={{ className: 'shared-class', size: '128' }}
-        >
+        <IconContext.Provider value={{ size: '128' }}>
           <BsLightningFill className='mx-auto fill-white' />
         </IconContext.Provider>
-        <div className='font-normal mt-[30px]'>
+        <div className='mt-[30px] font-normal'>
           <h1 className=' text-[42px] tablet:text-[80px] '>Human Benchmark</h1>
           <h2 className='text-[28px] tablet:text-[24px]'>
             Lorem ipsum dolor sit amet consectetur.
