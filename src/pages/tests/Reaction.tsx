@@ -34,7 +34,7 @@ const Reaction = () => {
 
   return (
     <>
-      {gameStart && gameStatus.isStarted ? (
+      {gameStart ? (
         <main
           onClick={() => {
             stopTime.current = new Date().getTime()
