@@ -52,7 +52,8 @@ export default {
             500: '#4285f5',
             200: '#2b87d1'
           },
-          pink: '#f53264'
+          pink: '#f53264',
+          green: '#4bdb6a'
         }
       },
       text: {
