@@ -1,5 +1,6 @@
 import { BsLightningFill } from 'react-icons/bs'
 import { IconContext } from 'react-icons'
+import { Link } from 'react-router-dom'
 interface hero {
   title: string
   subtitle: string
@@ -17,9 +18,12 @@ const PageHero = ({ title, subtitle, buttonShow }: hero) => {
           <h2 className='text-[28px] tablet:text-[24px]'>{subtitle}</h2>
         </div>
         {buttonShow && (
-          <button className='mt-[30px] rounded-[3px] bg-background-yellow px-8 py-3 text-lg font-[600]  text-text_black duration-200 hover:bg-white'>
+          <Link
+            to={'tests/reaction'}
+            className='mx-auto mt-[30px] block w-fit rounded-[3px] bg-background-yellow px-8 py-3 text-lg font-[600]  text-text_black duration-200 hover:bg-white'
+          >
             Get Started
-          </button>
+          </Link>
         )}
       </div>
     </main>
