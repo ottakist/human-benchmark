@@ -1,8 +1,9 @@
-/* eslint-disable multiline-ternary */
-import { useEffect, useRef, useState } from 'react'
+import ReactionInfo from '../../components/reaction/ReactionInfo'
+import { useRef, useState } from 'react'
 import { PageHero, TestInfo } from '../../components'
 import { IoAlertCircle } from 'react-icons/io5'
 import { ImClock2 } from 'react-icons/im'
+import { BsCircleFill } from 'react-icons/bs'
 const Reaction = () => {
   const [gameStart, setGameStart] = useState(false)
   const startTime = useRef<number>(0)
@@ -25,17 +26,19 @@ const Reaction = () => {
   const [gameStatus, setGameStatus] = useState({
     isReady: false,
     isStarted: false,
-    gameMessage: ['Wait for green...', '', `\u25CF\u25CF\u25CF`],
-    gameBackground: 'bg-red-600'
+    icon: [BsCircleFill, BsCircleFill, BsCircleFill],
+    message: ['Wait for green...', ''],
+    background: 'bg-red-600'
   })
   // eslint-disable-next-line @typescript-eslint/promise-function-async
   const getStartTime = (): Promise<number> => {
-    const rnd = Math.random() * 5 * 1000
+    const rnd = Math.random() * 5 * 1000 + 1000
     setGameStatus({
       isReady: false,
       isStarted: true,
-      gameMessage: ['Wait for green...', '', `\u25CF\u25CF\u25CF`],
-      gameBackground: 'bg-red-600'
+      icon: [BsCircleFill, BsCircleFill, BsCircleFill],
+      message: ['Wait for green...', ''],
+      background: 'bg-red-600'
     })
     return new Promise((resolve) => {
       timeoutId.current = setTimeout(() => {
@@ -51,8 +54,9 @@ const Reaction = () => {
     setGameStatus({
       isReady: true,
       isStarted: true,
-      gameMessage: ['Click!', '', `\u25CF\u25CF\u25CF`],
-      gameBackground: 'bg-background-green'
+      icon: [BsCircleFill, BsCircleFill, BsCircleFill],
+      message: ['Click!', ''],
+      background: 'bg-background-green'
     })
   }
   function endClick() {
@@ -62,8 +66,9 @@ const Reaction = () => {
       setGameStatus({
         isReady: false,
         isStarted: false,
-        gameMessage: ['Too soon!', 'Click to try again', `Alert`],
-        gameBackground: 'bg-background-blue-500'
+        icon: [IoAlertCircle],
+        message: ['Too soon!', 'Click to try again'],
+        background: 'bg-background-blue-500'
       })
     } else {
       setChartData((prevState) => [
@@ -77,59 +82,28 @@ const Reaction = () => {
       setGameStatus({
         isReady: false,
         isStarted: false,
-        gameMessage: [
+        icon: [ImClock2],
+        message: [
           `${(stopTime.current - startTime.current).toString()} ms`,
-          'Click to keep going',
-          'Clock'
+          `${
+            chartData.length === 4 ? 'Click to restart' : 'Click to keep going'
+          }`
         ],
-        gameBackground: 'bg-background-blue-500'
+        background: 'bg-background-blue-500'
       })
     }
   }
   const handleClick = !gameStatus.isStarted ? startClick : endClick
-  useEffect(() => {
-    // eslint-disable-next-line array-callback-return
-    chartData.map((data) => {
-      if (data.round === 5) {
-        console.log(data.score)
-        setGameStatus({
-          isReady: false,
-          isStarted: false,
-          gameMessage: [`${data.score} ms`, 'Click to restart', 'Clock'],
-          gameBackground: 'bg-background-blue-500'
-        })
-      }
-    })
-  }, [chartData])
   return (
     <>
       {gameStart ? (
-        <main
-          onClick={() => {
-            handleClick()
-          }}
-          className={`flex h-[540px] cursor-pointer select-none flex-col  justify-center overflow-hidden ${gameStatus.gameBackground}  p-5 text-center text-white`}
-        >
-          <div className='container tablet:px-[20px]'>
-            <div className='mt-[30px] font-normal'>
-              <h1 className=' text-[42px] tablet:text-[80px] '>
-                {gameStatus.gameMessage[2] === 'Alert' ? (
-                  <IoAlertCircle className='mx-auto' />
-                ) : gameStatus.gameMessage[2] === 'Clock' ? (
-                  <ImClock2 className='mx-auto' />
-                ) : (
-                  gameStatus.gameMessage[2]
-                )}
-              </h1>
-              <h1 className=' text-[42px] tablet:text-[80px] '>
-                {gameStatus.gameMessage[0]}
-              </h1>
-              <h2 className='text-[28px] tablet:text-[24px]'>
-                {gameStatus.gameMessage[1]}
-              </h2>
-            </div>
-          </div>
-        </main>
+        <ReactionInfo
+          background={gameStatus.background}
+          icon={gameStatus.icon}
+          result={gameStatus.message[0]}
+          subString={gameStatus.message[1]}
+          action={handleClick}
+        />
       ) : (
         <div
           onClick={() => {
