@@ -5,7 +5,7 @@ interface chartData {
 }
 const DashChart = ({ data }: chartData) => {
   return (
-    <aside className='h-full rounded-md bg-white p-8 shadow-md'>
+    <aside className=' h-full rounded-md bg-white p-8 shadow-md'>
       <h2 className=' text-[27px] font-bold'>Statistics</h2>
       {data.length > 0 ? (
         <LineChart

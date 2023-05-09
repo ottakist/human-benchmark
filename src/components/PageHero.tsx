@@ -1,20 +1,22 @@
-import { BsLightningFill } from 'react-icons/bs'
-import { IconContext } from 'react-icons'
+import { type IconType } from 'react-icons'
 import { Link } from 'react-router-dom'
 interface hero {
   title: string
   subtitle: string
+  icon: IconType
   buttonShow: boolean
 }
-const PageHero = ({ title, subtitle, buttonShow }: hero) => {
+const PageHero = ({ icon: Icon, title, subtitle, buttonShow }: hero) => {
   return (
     <main className=' flex h-[540px] cursor-pointer select-none flex-col  justify-center overflow-hidden bg-background-blue-200  p-5 text-center text-white'>
       <div className='container tablet:px-[20px]'>
-        <IconContext.Provider value={{ size: '128' }}>
-          <BsLightningFill className='mx-auto fill-white' />
-        </IconContext.Provider>
+        <div className='mx-auto h-[128px] w-[100px]'>
+          <Icon className='h-full w-full fill-white' />
+        </div>
         <div className='mt-[30px] font-normal'>
-          <h1 className=' text-[42px] tablet:text-[80px] '>{title}</h1>
+          <h1 className=' text-[42px] capitalize tablet:text-[80px]'>
+            {title}
+          </h1>
           <h2 className='text-[28px] tablet:text-[24px]'>{subtitle}</h2>
         </div>
         {buttonShow && (

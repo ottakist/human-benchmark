@@ -3,20 +3,12 @@ import { useRef, useState } from 'react'
 import { PageHero, TestInfo } from '../../components'
 import { IoAlertCircle } from 'react-icons/io5'
 import { ImClock2 } from 'react-icons/im'
-import { BsCircleFill } from 'react-icons/bs'
+import { BsCircleFill, BsLightningFill } from 'react-icons/bs'
 const Reaction = () => {
   const [gameStart, setGameStart] = useState(false)
   const startTime = useRef<number>(0)
   const stopTime = useRef<number>(0)
   const timeoutId = useRef<number>(0)
-  const aboutTest = [
-    'This is a simple tool to measure your reaction time.',
-    'The average (median) reaction time is 273 milliseconds, according to the data collected so far.',
-    'In addition to measuring your reaction time, this test is affected by the latency of your computer and monitor. Using a fast computer and low latency / high framerate monitor will improve your score.',
-    'Scores in this test are faster than the aim trainer test, because you can react instantly without moving the cursor.',
-    'This is discussed in further detail on the the statistics page. While an average human reaction time may fall between 200-250ms, your computer could be adding 10-50ms on top. Some modern TVs add as much as 150ms!',
-    'If you want, you can keep track of your scores, and see your full history of reaction times. Just perform at least 5 clicks and then save.'
-  ]
   interface ChartData {
     round: number
     score: number
@@ -112,13 +104,14 @@ const Reaction = () => {
           }}
         >
           <PageHero
-            title='Human Benchmark'
+          icon={BsLightningFill}
+            title='Reaction Time Test'
             subtitle='When the red box turns green, click as quickly as you can.'
             buttonShow={false}
           />
         </div>
       )}
-      <TestInfo data={chartData} paragraphs={aboutTest} />
+      <TestInfo testName='reaction' data={chartData} />
     </>
   )
 }
