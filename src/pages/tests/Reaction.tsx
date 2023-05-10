@@ -1,6 +1,5 @@
-import ReactionInfo from '../../components/reaction/ReactionInfo'
 import { useRef, useState } from 'react'
-import { PageHero, TestInfo } from '../../components'
+import { PageHero, TestInfo, ReactionInfo } from '../../components'
 import { IoAlertCircle } from 'react-icons/io5'
 import { ImClock2 } from 'react-icons/im'
 import { BsCircleFill, BsLightningFill } from 'react-icons/bs'
@@ -104,7 +103,7 @@ const Reaction = () => {
           }}
         >
           <PageHero
-          icon={BsLightningFill}
+            icon={BsLightningFill}
             title='Reaction Time Test'
             subtitle='When the red box turns green, click as quickly as you can.'
             buttonShow={false}
