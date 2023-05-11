@@ -7,8 +7,8 @@ interface TestProps {
 }
 const TestInfo = ({ testName, data }: TestProps) => {
   return (
-    <section className='p-8'>
-      <div className='container flex h-fit flex-row  flex-wrap content-between pt-5 tablet:flex-nowrap'>
+    <section className='tablet:p-8'>
+      <div className=' flex h-fit flex-wrap content-between pt-5 tablet:container tablet:flex-nowrap'>
         <div className='mr-5'>
           <DashChart data={data} />
         </div>

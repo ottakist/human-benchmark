@@ -3,7 +3,7 @@ interface props {
 }
 const TestAbout = ({ paragraphs }: props) => {
   return (
-    <aside className='rounded-md bg-white p-8 shadow-md'>
+    <aside className='bg-white p-8 shadow-md tablet:rounded-md'>
       <h2 className=' text-[27px] font-bold'>About the test</h2>
       {paragraphs?.map((p, index) => {
         return (
