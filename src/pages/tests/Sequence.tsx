@@ -1,39 +1,89 @@
 import { HiSquares2X2 } from 'react-icons/hi2'
+import { BsFillSquareFill } from 'react-icons/bs'
 import { PageHero, SequenceInfo, TestInfo } from '../../components'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 interface ChartData {
   round: number
   score: number
   average: number
 }
-// const arr = [
-//   [0, 0, 0],
-//   [0, 0, 0],
-//   [0, 0, 0]
-// ]
-const numbers: number[] = []
-function generateSequence(amount: number) {
-  while (numbers.length < amount) {
-    numbers.push(Math.floor(Math.random() * 9) + 1)
-  }
-}
+const arr = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]
 
 const Sequence = () => {
-  const [rounds, setRounds] = useState<number>(0)
   const [gameStart, setGameStart] = useState(false)
   const [chartData] = useState<ChartData[]>([])
-  generateSequence(rounds)
-  console.log(numbers)
+  const [sequence, setSequence] = useState<number[]>([])
+  const [rounds, setRounds] = useState<number>(2)
+  const [squareIndex, setSquareIndex] = useState<number>(0)
+  useEffect(() => {
+    if (sequence.length > 0) {
+      iterateWithDelay(sequence)
+    }
+  }, [sequence])
+  function generateSequence(amount: number) {
+    setSequence((prevSequence) => {
+      const newSequence = [...prevSequence]
+      while (newSequence.length < amount) {
+        newSequence.push(Math.floor(Math.random() * 9) + 1)
+      }
+      return newSequence
+    })
+  }
+  function iterateWithDelay(array: number[]) {
+    let timeoutId: number
+    for (let i = 0; i < array.length; i++) {
+      timeoutId = setTimeout(() => {
+        setSquareIndex(array[i])
+        if (i === array.length - 1) {
+          setSquareIndex(0)
+          clearTimeout(timeoutId)
+        }
+      }, i * 1700)
+    }
+  }
+
   return (
     <>
-      <SequenceInfo
+      <main className=' flex h-[540px] cursor-pointer select-none flex-col  justify-center overflow-hidden bg-background-blue-200  p-5 text-center text-white'>
+        <div className='container tablet:px-[20px]'>
+          {arr.map((col, index) => (
+            <div
+              onClick={() => {
+                generateSequence(9)
+              }}
+              key={index}
+              className='flex justify-center'
+            >
+              {col.map((square) => {
+                return (
+                  <BsFillSquareFill
+                    key={square}
+                    className={`p-2 ${
+                      square === squareIndex
+                        ? 'scale-100 fill-white opacity-100 transition-all delay-200 ease-out'
+                        : 'fill-blue-dark opacity-20'
+                    }`}
+                    size={132}
+                  />
+                )
+              })}
+            </div>
+          ))}
+        </div>
+      </main>
+
+      {/* <SequenceInfo
         background='bg-background-blue-500'
         icon={[HiSquares2X2]}
-        result={'msg1'}
+        result={`Level ${rounds}`}
         subString={'msg2'}
         action={setRounds}
-      />
-      <div
+      /> */}
+      {/* <div
         onClick={() => {
           setRounds((rounds) => rounds + 1)
           setGameStart((prevState) => {
@@ -42,13 +92,14 @@ const Sequence = () => {
           // void startClick()
         }}
       >
+
         <PageHero
           icon={HiSquares2X2}
           title='sequence memory'
           subtitle='Remember an increasingly long pattern of button presses.'
           buttonShow={false}
         />
-      </div>
+      </div> */}
       <TestInfo testName='sequence' data={chartData} />
     </>
   )

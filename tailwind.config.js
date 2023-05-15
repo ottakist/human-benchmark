@@ -33,6 +33,7 @@ export default {
       colors: {
         fill_grey: '#cdcccc',
         fill_blue: '#2b87d1',
+        fill_blue_dark: '#000066',
         text_black: '#333333',
         boxShadow: {
           '2xl': '0px 12px 15px rgba(0, 0, 0, 0.07) ;'
