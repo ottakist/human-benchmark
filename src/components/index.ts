@@ -4,9 +4,8 @@ import Sidebar from './Sidebar'
 import PageHero from './PageHero'
 import GamesTable from './GamesTable'
 import DashChart from './DashChart'
-import TestInfo from './TestInfo'
-import ReactionInfo from './reaction/ReactionInfo'
-import SequenceInfo from './sequence/SequenceInfo'
+import TestInfoSection from './TestInfoSection'
+import TestResult from './TestResult'
 
 export {
   GameBtn,
@@ -15,7 +14,6 @@ export {
   PageHero,
   GamesTable,
   DashChart,
-  TestInfo,
-  ReactionInfo,
-  SequenceInfo
+  TestInfoSection,
+  TestResult
 }

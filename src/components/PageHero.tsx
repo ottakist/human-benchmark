@@ -1,12 +1,11 @@
 import { type IconType } from 'react-icons'
-import { Link } from 'react-router-dom'
 interface hero {
   title: string
   subtitle: string
   icon: IconType
-  buttonShow: boolean
+  button: (() => void) | null
 }
-const PageHero = ({ icon: Icon, title, subtitle, buttonShow }: hero) => {
+const PageHero = ({ icon: Icon, title, subtitle, button }: hero) => {
   return (
     <main className=' flex h-[540px] cursor-pointer select-none flex-col  justify-center overflow-hidden bg-background-blue-200  p-5 text-center text-white'>
       <div className='container tablet:px-[20px]'>
@@ -19,13 +18,13 @@ const PageHero = ({ icon: Icon, title, subtitle, buttonShow }: hero) => {
           </h1>
           <h2 className='text-[28px] tablet:text-[24px]'>{subtitle}</h2>
         </div>
-        {buttonShow && (
-          <Link
-            to={'tests/reaction'}
+        {button != null && (
+          <button
+            onClick={button}
             className='mx-auto mt-[30px] block w-fit rounded-[3px] bg-background-yellow px-8 py-3 text-lg font-[600]  text-text_black duration-200 hover:bg-white'
           >
             Get Started
-          </Link>
+          </button>
         )}
       </div>
     </main>

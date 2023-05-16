@@ -5,19 +5,21 @@ interface InfoType {
   icon: IconType[]
   result: string
   subString: string
-  action: () => void
+  action: (() => void) | null
+  button: (() => void) | null
 }
-const ReactionInfo = ({
+const TestResult = ({
   background,
   icon,
   result,
   subString,
-  action
+  action,
+  button
 }: InfoType) => {
   return (
     <main
       onClick={() => {
-        action()
+        action?.()
       }}
       className={`flex h-[540px] cursor-pointer select-none flex-col  justify-center overflow-hidden ${background}  p-5 text-center text-white`}
     >
@@ -31,9 +33,17 @@ const ReactionInfo = ({
           <h1 className=' text-[42px] tablet:text-[80px] '>{result}</h1>
           <h2 className='text-[28px] tablet:text-[24px]'>{subString}</h2>
         </div>
+        {typeof button === 'function' && (
+          <button
+            onClick={button}
+            className='mx-auto mt-[30px] block w-fit rounded-[3px] bg-background-yellow px-8 py-3 text-lg font-[600]  text-text_black duration-200 hover:bg-white'
+          >
+            Get Started
+          </button>
+        )}
       </div>
     </main>
   )
 }
 
-export default ReactionInfo
+export default TestResult

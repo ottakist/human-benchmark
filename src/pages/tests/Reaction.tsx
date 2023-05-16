@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { PageHero, TestInfo, ReactionInfo } from '../../components'
+import { PageHero, TestInfoSection, TestResult } from '../../components'
 import { IoAlertCircle } from 'react-icons/io5'
 import { ImClock2 } from 'react-icons/im'
 import { BsCircleFill, BsLightningFill } from 'react-icons/bs'
@@ -23,7 +23,7 @@ const Reaction = () => {
   })
   // eslint-disable-next-line @typescript-eslint/promise-function-async
   const getStartTime = (): Promise<number> => {
-    const rnd = Math.random() * 5 * 1000 + 1000
+    const rnd = Math.random() * 3 * 1000 + 1000
     setGameStatus({
       isReady: false,
       isStarted: true,
@@ -77,7 +77,9 @@ const Reaction = () => {
         message: [
           `${(stopTime.current - startTime.current).toString()} ms`,
           `${
-            chartData.length === 4 ? 'Click to restart' : 'Click to keep going'
+            chartData.length === 4
+              ? 'Click button to restart'
+              : 'Click to keep going'
           }`
         ],
         background: 'bg-background-blue-500'
@@ -88,17 +90,17 @@ const Reaction = () => {
   return (
     <>
       {gameStart ? (
-        <ReactionInfo
+        <TestResult
           background={gameStatus.background}
           icon={gameStatus.icon}
           result={gameStatus.message[0]}
           subString={gameStatus.message[1]}
-          action={handleClick}
+          action={chartData.length === 4 ? null : handleClick}
+          button={chartData.length === 4 ? () => setGameStart(true) : null}
         />
       ) : (
         <div
           onClick={() => {
-            setGameStart(true)
             void startClick()
           }}
         >
@@ -106,11 +108,11 @@ const Reaction = () => {
             icon={BsLightningFill}
             title='Reaction Time Test'
             subtitle='When the red box turns green, click as quickly as you can.'
-            buttonShow={false}
+            button={() => setGameStart(true)}
           />
         </div>
       )}
-      <TestInfo testName='reaction' data={chartData} />
+      <TestInfoSection testName='reaction' data={chartData} />
     </>
   )
 }

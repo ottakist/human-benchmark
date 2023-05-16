@@ -5,7 +5,7 @@ interface TestProps {
   testName: string
   data: Array<{ round: number; score: number; average: number }>
 }
-const TestInfo = ({ testName, data }: TestProps) => {
+const TestInfoSection = ({ testName, data }: TestProps) => {
   return (
     <section className='tablet:p-8'>
       <div className=' flex h-fit flex-wrap content-between pt-5 tablet:container tablet:flex-nowrap'>
@@ -22,4 +22,4 @@ const TestInfo = ({ testName, data }: TestProps) => {
   )
 }
 
-export default TestInfo
+export default TestInfoSection
