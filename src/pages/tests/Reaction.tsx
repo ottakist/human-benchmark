@@ -95,8 +95,8 @@ const Reaction = () => {
           icon={gameStatus.icon}
           result={gameStatus.message[0]}
           subString={gameStatus.message[1]}
-          action={chartData.length === 4 ? null : handleClick}
-          button={chartData.length === 4 ? () => setGameStart(true) : null}
+          action={chartData.length === 5 ? null : handleClick}
+          button={chartData.length === 5 ? async () => await startClick() : null}
         />
       ) : (
         <div
