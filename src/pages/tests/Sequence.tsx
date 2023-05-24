@@ -2,11 +2,6 @@ import { HiSquares2X2 } from 'react-icons/hi2'
 import { BsFillSquareFill } from 'react-icons/bs'
 import { PageHero, TestInfoSection, TestResult } from '../../components'
 import { useEffect, useState } from 'react'
-interface ChartData {
-  round: number
-  score: number
-  average: number
-}
 const arr = [
   [1, 2, 3],
   [4, 5, 6],
@@ -20,9 +15,8 @@ const Sequence = () => {
     showResult: false,
     title: 'sequence memory',
     subtitle: 'Remember an increasingly long pattern of button presses.',
-    background: 'bg-red-600'
+    background: 'bg-background-blue-200'
   })
-  const [chartData] = useState<ChartData[]>([])
   const [sequence, setSequence] = useState<number[]>([])
   const [rounds, setRounds] = useState<number>(0)
   const [sequenceClick, setSequenceClick] = useState<number>(0)
@@ -32,7 +26,7 @@ const Sequence = () => {
     if (sequence.length > 0) {
       const id = setTimeout(() => {
         iterateWithDelay(sequence)
-      }, 600)
+      }, 1000)
       return () => clearTimeout(id)
     }
   }, [sequence])
@@ -52,21 +46,31 @@ const Sequence = () => {
   }
   function iterateWithDelay(array: number[]) {
     setGameStatus({ ...gameStatus, isReady: false })
-    let timeoutId: number
-    for (let i = 0; i < array.length; i++) {
-      timeoutId = setTimeout(() => {
-        triggerBtn(array[i])
+    array.forEach((num, i) => {
+      const timeoutId = setTimeout(() => {
+        triggerBtn(num)
         if (i === array.length - 1) {
           clearTimeout(timeoutId)
           setGameStatus({ ...gameStatus, isReady: true })
         }
-      }, i * 1000)
-    }
+      }, i * 800)
+    })
   }
+
   function sequenceMatching(clickIndex: number, buttonIndex: number) {
     if (buttonIndex === sequence[clickIndex]) {
       if (clickIndex === sequence.length - 1) {
         setRounds((prev) => (prev += 1))
+        const id = setTimeout(() => {
+          setGameStatus({
+            ...gameStatus,
+            background:
+              'transition-background duration-300 ease-linear bg-background-blue-70 '
+          })
+        }, 200)
+        return () => {
+          clearTimeout(id)
+        }
       }
     } else {
       setGameStatus({
@@ -92,7 +96,7 @@ const Sequence = () => {
         <>
           {gameStatus.showResult ? (
             <TestResult
-              background='bg-background-blue-500'
+              background='bg-background-blue-200'
               icon={[HiSquares2X2]}
               result={gameStatus.title}
               subString={gameStatus.subtitle}
@@ -105,7 +109,9 @@ const Sequence = () => {
               }}
             />
           ) : (
-            <main className=' flex h-[540px] select-none flex-col  justify-center overflow-hidden bg-background-blue-200  p-5 text-center text-white'>
+            <main
+              className={`transition-background bg-background-blue-100 flex h-[540px]  select-none flex-col justify-center overflow-hidden duration-300 ease-linear ${gameStatus.background}  p-5 text-center text-white`}
+            >
               <div className='container tablet:px-[20px]'>
                 <h2 className='text-[28px] tablet:text-[24px]'>
                   Level: {rounds}
@@ -126,8 +132,8 @@ const Sequence = () => {
                             key={square}
                             className={` cursor-pointer p-2 ${
                               square === squareIndex
-                                ? 'scale-100 fill-white opacity-100 transition-all delay-100 ease-out'
-                                : ' scale-100 fill-fill_blue_dark opacity-20  transition-all delay-100 ease-out'
+                                ? 'scale-100  fill-white opacity-100 transition-all duration-[50] ease-out '
+                                : ' scale-100 fill-fill_blue_dark opacity-20  transition-all duration-[50] ease-out'
                             }`}
                             size={132}
                           />
@@ -151,22 +157,7 @@ const Sequence = () => {
           }}
         />
       )}
-      {/* <div
-        onClick={() => {
-          setRounds((rounds) => rounds + 1)
-          setGameStart((prevState) => {
-            return !prevState
-          })
-        }}
-      >
-        <PageHero
-          icon={HiSquares2X2}
-          title='sequence memory'
-          subtitle='Remember an increasingly long pattern of button presses.'
-          button={() => setGameStart(true)}
-        />
-      </div> */}
-      <TestInfoSection testName='sequence' data={chartData} />
+      <TestInfoSection testName='sequence' data={[]} />
     </>
   )
 }
