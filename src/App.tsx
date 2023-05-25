@@ -1,6 +1,6 @@
 import { Navbar, Sidebar } from './components'
 import { Home, Error, Dashboard } from './pages'
-import { Reaction, Sequence } from './pages/tests'
+import { Aim, Reaction, Sequence } from './pages/tests'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 function App(): JSX.Element {
   return (
@@ -12,6 +12,7 @@ function App(): JSX.Element {
           <Route path='/' element={<Home />} />
           <Route path='/tests/reaction' element={<Reaction />} />
           <Route path='/tests/sequence' element={<Sequence />} />
+          <Route path='/tests/aim' element={<Aim />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='*' element={<Error />} />
         </Routes>

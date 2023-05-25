@@ -10,7 +10,7 @@ const PageHero = ({ icon: Icon, title, subtitle, button }: hero) => {
     <main className=' flex h-[540px] cursor-pointer select-none flex-col  justify-center overflow-hidden bg-background-blue-200  p-5 text-center text-white'>
       <div className='container tablet:px-[20px]'>
         <div className='mx-auto  h-[128px] w-[100px]'>
-          <Icon className='h-full w-full fill-white' />
+          <Icon className='h-full w-full ' />
         </div>
         <div className='mt-[30px] font-normal'>
           <h1 className=' text-[42px] capitalize tablet:text-[80px]'>

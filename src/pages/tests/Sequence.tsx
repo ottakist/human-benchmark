@@ -74,10 +74,10 @@ const Sequence = () => {
       }
     } else {
       setGameStatus({
-        ...gameStatus,
         isReady: false,
         showResult: true,
         title: `Level ${rounds}`,
+        background: 'bg-background-blue-200',
         subtitle: 'Click button to restart'
       })
       setSequence([])
@@ -116,7 +116,7 @@ const Sequence = () => {
                 <h2 className='text-[28px] tablet:text-[24px]'>
                   Level: {rounds}
                 </h2>
-                <div className='mt-7'>
+                <div className='mt-7 select-none'>
                   {arr.map((col, index) => (
                     <div key={index} className='flex justify-center'>
                       {col.map((square) => {
@@ -130,7 +130,7 @@ const Sequence = () => {
                               }
                             }}
                             key={square}
-                            className={` cursor-pointer p-2 ${
+                            className={` cursor-pointer  p-2 ${
                               square === squareIndex
                                 ? 'scale-100  fill-white opacity-100 transition-all duration-[50] ease-out '
                                 : ' scale-100 fill-fill_blue_dark opacity-20  transition-all duration-[50] ease-out'
