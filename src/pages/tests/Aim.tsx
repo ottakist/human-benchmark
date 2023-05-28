@@ -66,7 +66,7 @@ const Aim = () => {
                     moveTarget()
                     setAimsCount((prev) => (prev -= 1))
                   }}
-                  className={`absolute m-0 cursor-pointer text-[80px]`}
+                  className={`absolute m-0 cursor-pointer text-[80px] focus:outline-none`}
                   style={{
                     transform: `matrix(1, 0, 0, 1, ${position.x}, ${position.y})`
                   }}

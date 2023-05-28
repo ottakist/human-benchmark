@@ -13,6 +13,9 @@ body {
 * {
   -webkit-font-smoothing: antialiased;
 }
+svg {
+  -webkit-tap-highlight-color: transparent;
+}
 @layer components {
   .container {
     @apply mx-auto my-0   w-full max-w-[970px];
