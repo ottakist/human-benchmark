@@ -110,7 +110,7 @@ const Sequence = () => {
             />
           ) : (
             <main
-              className={`transition-background bg-background-blue-100 flex h-[540px]  select-none flex-col justify-center overflow-hidden duration-300 ease-linear ${gameStatus.background}  p-5 text-center text-white`}
+              className={`transition-background bg-background-blue-200 flex h-[540px]  select-none flex-col justify-center overflow-hidden duration-300 ease-linear ${gameStatus.background}  p-5 text-center text-white`}
             >
               <div className='container tablet:px-[20px]'>
                 <h2 className='text-[28px] tablet:text-[24px]'>

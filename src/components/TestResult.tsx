@@ -25,7 +25,11 @@ const TestResult = ({
     >
       <div className='container tablet:px-[20px]'>
         <div className='mt-[30px] font-normal'>
-          <h1 className=' text-[42px] tablet:text-[80px] '>
+          <h1
+            className={`${
+              icon.length > 1 ? 'text-[42px] tablet:text-[80px]' : 'text-[80px]'
+            }`}
+          >
             {icon.map((Icon, index) => (
               <Icon className='mx-auto inline-flex pr-2' key={index} />
             ))}
