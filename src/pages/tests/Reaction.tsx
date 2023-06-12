@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { PageHero, TestInfoSection, TestResult } from '../../components'
+import { PageHero, TestResult } from '../../components'
 import { IoAlertCircle } from 'react-icons/io5'
 import { ImClock2 } from 'react-icons/im'
 import { BsCircleFill, BsLightningFill } from 'react-icons/bs'
@@ -96,7 +96,9 @@ const Reaction = () => {
           result={gameStatus.message[0]}
           subString={gameStatus.message[1]}
           action={chartData.length === 5 ? null : handleClick}
-          button={chartData.length === 5 ? async () => await startClick() : null}
+          button={
+            chartData.length === 5 ? async () => await startClick() : null
+          }
         />
       ) : (
         <div
@@ -105,14 +107,15 @@ const Reaction = () => {
           }}
         >
           <PageHero
-            icon={BsLightningFill}
+            icon={[BsLightningFill]}
             title='Reaction Time Test'
-            subtitle='When the red box turns green, click as quickly as you can.'
+            subString='When the red box turns green, click as quickly as you can.'
+            action={null}
             button={() => setGameStart(true)}
+            background='bg-background-blue-200'
           />
         </div>
       )}
-      <TestInfoSection testName='reaction' data={chartData} />
     </>
   )
 }

@@ -6,6 +6,7 @@ import GamesTable from './GamesTable'
 import DashChart from './DashChart'
 import TestInfoSection from './TestInfoSection'
 import TestResult from './TestResult'
+import Loading from './Loading'
 
 export {
   GameBtn,
@@ -15,5 +16,6 @@ export {
   GamesTable,
   DashChart,
   TestInfoSection,
-  TestResult
+  TestResult,
+  Loading
 }

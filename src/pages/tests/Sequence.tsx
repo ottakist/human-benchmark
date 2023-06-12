@@ -110,7 +110,7 @@ const Sequence = () => {
             />
           ) : (
             <main
-              className={`transition-background flex h-[540px] select-none  flex-col justify-center overflow-hidden bg-background-blue-200 duration-300 ease-linear ${gameStatus.background}  p-5 text-center text-white`}
+              className={` transition-background flex h-[540px] select-none  flex-col justify-center overflow-hidden bg-background-blue-200 duration-300 ease-linear ${gameStatus.background}  p-5 text-center text-white`}
             >
               <div className='container tablet:px-[20px]'>
                 <h2 className='text-[28px] tablet:text-[24px]'>
@@ -148,16 +148,17 @@ const Sequence = () => {
         </>
       ) : (
         <PageHero
-          icon={HiSquares2X2}
+          icon={[HiSquares2X2]}
           title='sequence memory'
-          subtitle='Remember an increasingly long pattern of button presses.'
+          subString='Remember an increasingly long pattern of button presses.'
           button={() => {
             setGameStart(true)
             setRounds(1)
           }}
+          action={null}
+          background='bg-background-blue-200'
         />
       )}
-      <TestInfoSection testName='sequence' data={[]} />
     </>
   )
 }

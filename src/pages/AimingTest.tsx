@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/indent */
 import { useEffect, useState } from 'react'
 import { FiTarget } from 'react-icons/fi'
+
 interface TestProps {
   setGameStatus: React.Dispatch<
     React.SetStateAction<{
@@ -12,10 +13,11 @@ interface TestProps {
     }>
   >
 }
-const Aim = ({ setGameStatus }: TestProps) => {
+const AimingTest = ({ setGameStatus }: TestProps) => {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [aimsCount, setAimsCount] = useState(30)
   const [time, setTime] = useState({ startTime: 0, endTime: 0 })
+
   useEffect(() => {
     if (aimsCount === 0) {
       setGameStatus((prevGameStatus) => ({
@@ -64,7 +66,7 @@ const Aim = ({ setGameStatus }: TestProps) => {
               moveTarget()
               setAimsCount((prev) => (prev -= 1))
             }}
-            className={`absolute m-0 cursor-pointer text-[95px] focus:outline-none`}
+            className={`absolute m-0 cursor-pointer text-[80px] focus:outline-none`}
             style={{
               transform: `matrix(1, 0, 0, 1, ${position.x}, ${position.y})`
             }}
@@ -75,4 +77,4 @@ const Aim = ({ setGameStatus }: TestProps) => {
   )
 }
 
-export default Aim
+export default AimingTest

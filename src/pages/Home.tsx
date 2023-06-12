@@ -7,9 +7,11 @@ const Home = () => {
   return (
     <>
       <PageHero
-        icon={BsLightningFill}
+        icon={[BsLightningFill]}
         title='human benchmark'
-        subtitle='Measure your abilities with brain games and cognitive tests.'
+        subString='Measure your abilities with brain games and cognitive tests.'
+        action={null}
+        background='bg-background-blue-200'
         button={() => navigate('tests/reaction')}
       />
       <GamesTable />
