@@ -1,6 +1,6 @@
 import { HiSquares2X2 } from 'react-icons/hi2'
 import { BsFillSquareFill } from 'react-icons/bs'
-import { PageHero, TestInfoSection, TestResult } from '../../components'
+import { PageHero, TestResult } from '../../components'
 import { useEffect, useState } from 'react'
 const arr = [
   [1, 2, 3],
@@ -34,6 +34,10 @@ const Sequence = () => {
     generateSequence(rounds)
     setSequenceClick(0)
   }, [rounds])
+  useEffect(() => {
+    setGameStart(true)
+    setRounds(1)
+  }, [])
   function generateSequence(amount: number) {
     setSequence((prevSequence) => {
       const newSequence = [...prevSequence]

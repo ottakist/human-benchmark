@@ -1,13 +1,10 @@
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { Loading, PageHero, TestInfoSection } from '../components'
 import { BsLightningFill } from 'react-icons/bs'
 import { type Params, useParams } from 'react-router-dom'
 import { games } from '../utils/games'
 import { type IconType } from 'react-icons'
-function loadComponent(name: string) {
-  const Component = React.lazy(async () => await import(`./tests/${name}.tsx`))
-  return Component
-}
+
 interface GameProps {
   icon: IconType
   title: string
@@ -15,20 +12,37 @@ interface GameProps {
   about: string[]
 }
 const Test = () => {
+  const { testName }: Readonly<Params<string>> = useParams()
   const [gameStart, setGameStart] = useState(false)
   const [gameStatus, setGameStatus] = useState({
     isReady: false,
     showResult: false,
+    icon: [BsLightningFill],
     action: () => {},
     button: () => {},
-    title: 'sequence memory',
-    subtitle: 'Remember an increasingly long pattern of button presses.',
-    background: 'bg-background-blue-200'
+    title: '',
+    subtitle: '',
+    background: ''
   })
-  const { testName }: Readonly<Params<string>> = useParams()
-  const Component = loadComponent(
-    testName ? testName.charAt(0).toUpperCase() + testName.slice(1) : 'Reaction'
+  const [Component, setComponent] = useState<React.ComponentType<any> | null>(
+    null
   )
+
+  function loadComponent(name: string) {
+    const DynamicComponent = React.lazy(async () => {
+      const module = await import(`./tests/${name}.tsx`)
+      return { default: module.default }
+    })
+    setComponent(() => DynamicComponent)
+  }
+
+  useEffect(() => {
+    loadComponent(
+      testName
+        ? testName.charAt(0).toUpperCase() + testName.slice(1)
+        : 'Reaction'
+    )
+  }, [testName])
   const { icon, title, subtitle, about }: GameProps = games.find(
     (game) => game.title.split(' ')[0].toLowerCase() === testName
   ) ?? { icon: BsLightningFill, title: '', subtitle: '', about: [] }
@@ -39,7 +53,7 @@ const Test = () => {
         gameStatus.showResult ? (
           <PageHero
             background={gameStatus.background}
-            icon={[BsLightningFill]}
+            icon={gameStatus.icon}
             title={gameStatus.title}
             subString={gameStatus.subtitle}
             action={() => {}}
@@ -49,7 +63,12 @@ const Test = () => {
           />
         ) : (
           <Suspense fallback={<Loading />}>
-            <Component setGameStatus={setGameStatus} />
+            {Component && (
+              <Component
+                setGameStatus={setGameStatus}
+                gameStatus={gameStatus}
+              />
+            )}
           </Suspense>
         )
       ) : (

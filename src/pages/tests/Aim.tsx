@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/indent */
 import { useEffect, useState } from 'react'
+import { type IconType } from 'react-icons'
 import { FiTarget } from 'react-icons/fi'
 interface TestProps {
   setGameStatus: React.Dispatch<
@@ -9,6 +9,9 @@ interface TestProps {
       title: string
       subtitle: string
       background: string
+      icon?: IconType[]
+      action?: () => void
+      button?: () => void
     }>
   >
 }
@@ -22,7 +25,8 @@ const Aim = ({ setGameStatus }: TestProps) => {
         ...prevGameStatus,
         title: 'Average time per target',
         subtitle: `${Math.floor((time.endTime - time.startTime) / 30)} ms.`,
-        showResult: true
+        showResult: true,
+        background: 'bg-background-blue-200'
       }))
     }
   }, [aimsCount])
