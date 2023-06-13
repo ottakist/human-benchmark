@@ -1,10 +1,34 @@
-import { useRef, useState } from 'react'
-import { PageHero, TestResult } from '../../components'
+import { useEffect, useRef, useState } from 'react'
+import { PageHero } from '../../components'
 import { IoAlertCircle } from 'react-icons/io5'
 import { ImClock2 } from 'react-icons/im'
-import { BsCircleFill, BsLightningFill } from 'react-icons/bs'
-const Reaction = () => {
-  const [gameStart, setGameStart] = useState(false)
+import { BsCircleFill } from 'react-icons/bs'
+import { type IconType } from 'react-icons'
+interface TestProps {
+  setGameStatus: React.Dispatch<
+    React.SetStateAction<{
+      isReady: boolean
+      showResult: boolean
+      title: string
+      subtitle: string
+      background: string
+      icon?: IconType[]
+      action?: () => void
+      button?: () => void
+    }>
+  >
+  gameStatus: {
+    isReady: boolean
+    showResult: boolean
+    title: string
+    subtitle: string
+    icon: IconType[]
+    action: () => void
+    button: () => void
+    background: string
+  }
+}
+const Reaction = ({ setGameStatus, gameStatus }: TestProps) => {
   const startTime = useRef<number>(0)
   const stopTime = useRef<number>(0)
   const timeoutId = useRef<number>(0)
@@ -14,21 +38,22 @@ const Reaction = () => {
     average: number
   }
   const [chartData, setChartData] = useState<ChartData[]>([])
-  const [gameStatus, setGameStatus] = useState({
-    isReady: false,
-    isStarted: false,
-    icon: [BsCircleFill, BsCircleFill, BsCircleFill],
-    message: ['Wait for green...', ''],
-    background: 'bg-red-600'
-  })
+  const [isReady, setIsReady] = useState(false)
+  const [isStarted, setIsStarted] = useState(false)
+  useEffect(() => {
+    void startClick()
+  }, [])
   // eslint-disable-next-line @typescript-eslint/promise-function-async
   const getStartTime = (): Promise<number> => {
     const rnd = Math.random() * 3 * 1000 + 1000
+    setIsReady(false)
+    setIsStarted(true)
+
     setGameStatus({
-      isReady: false,
-      isStarted: true,
+      ...gameStatus,
       icon: [BsCircleFill, BsCircleFill, BsCircleFill],
-      message: ['Wait for green...', ''],
+      title: 'Wait for green...',
+      subtitle: '',
       background: 'bg-red-600'
     })
     return new Promise((resolve) => {
@@ -40,26 +65,32 @@ const Reaction = () => {
   }
 
   async function startClick() {
+    setIsStarted(true)
     chartData.length === 5 && setChartData([])
     startTime.current = await getStartTime()
+    setIsReady(true)
+
     setGameStatus({
-      isReady: true,
-      isStarted: true,
+      ...gameStatus,
       icon: [BsCircleFill, BsCircleFill, BsCircleFill],
-      message: ['Click!', ''],
+      title: 'Click!',
+      subtitle: '',
       background: 'bg-background-green'
     })
   }
   function endClick() {
+    setIsStarted(false)
     stopTime.current = new Date().getTime()
-    if (!gameStatus.isReady) {
+    if (!isReady) {
       clearInterval(timeoutId.current)
+      setIsReady(false)
+
       setGameStatus({
-        isReady: false,
-        isStarted: false,
+        ...gameStatus,
         icon: [IoAlertCircle],
-        message: ['Too soon!', 'Click to try again'],
-        background: 'bg-background-blue-500'
+        title: 'Too soon!',
+        subtitle: 'Click to try again',
+        background: 'bg-background-blue-200'
       })
     } else {
       setChartData((prevState) => [
@@ -70,52 +101,32 @@ const Reaction = () => {
           average: 273
         }
       ])
+      setIsReady(false)
+      setIsStarted(false)
+
       setGameStatus({
-        isReady: false,
-        isStarted: false,
+        ...gameStatus,
         icon: [ImClock2],
-        message: [
-          `${(stopTime.current - startTime.current).toString()} ms`,
-          `${
-            chartData.length === 4
-              ? 'Click button to restart'
-              : 'Click to keep going'
-          }`
-        ],
-        background: 'bg-background-blue-500'
+        title: `${(stopTime.current - startTime.current).toString()} ms`,
+        subtitle:
+          chartData.length === 4
+            ? 'Click button to restart'
+            : 'Click to keep going',
+        background: 'bg-background-blue-200'
       })
     }
   }
-  const handleClick = !gameStatus.isStarted ? startClick : endClick
+  const handleClick = !isStarted ? startClick : endClick
   return (
     <>
-      {gameStart ? (
-        <TestResult
-          background={gameStatus.background}
-          icon={gameStatus.icon}
-          result={gameStatus.message[0]}
-          subString={gameStatus.message[1]}
-          action={chartData.length === 5 ? null : handleClick}
-          button={
-            chartData.length === 5 ? async () => await startClick() : null
-          }
-        />
-      ) : (
-        <div
-          onClick={() => {
-            void startClick()
-          }}
-        >
-          <PageHero
-            icon={[BsLightningFill]}
-            title='Reaction Time Test'
-            subString='When the red box turns green, click as quickly as you can.'
-            action={null}
-            button={() => setGameStart(true)}
-            background='bg-background-blue-200'
-          />
-        </div>
-      )}
+      <PageHero
+        background={gameStatus.background}
+        icon={gameStatus.icon}
+        title={gameStatus.title}
+        subString={gameStatus.subtitle}
+        action={chartData.length === 5 ? null : handleClick}
+        button={chartData.length === 5 ? async () => await startClick() : null}
+      />
     </>
   )
 }
