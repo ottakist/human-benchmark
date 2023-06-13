@@ -1,15 +1,15 @@
 import DashChart from './DashChart'
 import TestAbout from './TestAbout'
 interface TestProps {
-  data: Array<{ round: number; score: number; average: number }>
+  chart: string
   about: string[]
 }
-const TestInfoSection = ({ data, about }: TestProps) => {
+const TestInfoSection = ({ chart, about }: TestProps) => {
   return (
     <section className='tablet:p-8'>
       <div className=' flex h-fit flex-wrap content-between pt-5 tablet:container tablet:flex-nowrap'>
         <div className='mr-5'>
-          <DashChart data={data} />
+          <DashChart chart={chart} />
         </div>
         <TestAbout paragraphs={about} />
       </div>

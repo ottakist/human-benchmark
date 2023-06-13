@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../context'
-// BsFillLightningFill
-// BsLightning
 interface buttonProps {
   values: { title: string; icon?: JSX.Element }
 }
@@ -14,7 +12,7 @@ const NavButton = ({ values }: buttonProps): JSX.Element => {
         closeModal()
         setActivePage(values.title)
       }}
-      className={`flex items-center border-b-[2px]   px-[12px] py-[15px]  font-sans text-[18px] uppercase  leading-[18px] ${
+      className={`flex items-center px-[12px]  py-[15px] font-sans  text-[18px] uppercase leading-[18px] ${
         activePage === values.title ? 'bg-background-gray-300' : 'bg-white'
       }
          duration-200 hover:bg-background-gray-300

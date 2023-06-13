@@ -10,6 +10,7 @@ interface GameProps {
   title: string
   subtitle: string
   about: string[]
+  chart: string
 }
 const Test = () => {
   const { testName }: Readonly<Params<string>> = useParams()
@@ -43,9 +44,9 @@ const Test = () => {
         : 'Reaction'
     )
   }, [testName])
-  const { icon, title, subtitle, about }: GameProps = games.find(
+  const { icon, title, subtitle, about, chart }: GameProps = games.find(
     (game) => game.title.split(' ')[0].toLowerCase() === testName
-  ) ?? { icon: BsLightningFill, title: '', subtitle: '', about: [] }
+  ) ?? { icon: BsLightningFill, title: '', subtitle: '', about: [], chart: '' }
 
   return (
     <>
@@ -83,7 +84,7 @@ const Test = () => {
           background='bg-background-blue-200'
         />
       )}
-      <TestInfoSection about={about} data={[]} />
+      <TestInfoSection about={about} chart={chart} />
     </>
   )
 }
