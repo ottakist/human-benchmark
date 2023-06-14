@@ -5,7 +5,6 @@ import PageHero from './PageHero'
 import GamesTable from './GamesTable'
 import DashChart from './DashChart'
 import TestInfoSection from './TestInfoSection'
-import TestResult from './TestResult'
 import Loading from './Loading'
 
 export {
@@ -16,6 +15,5 @@ export {
   GamesTable,
   DashChart,
   TestInfoSection,
-  TestResult,
   Loading
 }

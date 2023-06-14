@@ -14,7 +14,7 @@ const PageHero = ({
   title,
   subString,
   button
-}: hero) => {
+}: hero): JSX.Element => {
   return (
     <main
       onClick={() => {

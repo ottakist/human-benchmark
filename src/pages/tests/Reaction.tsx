@@ -1,3 +1,4 @@
+import type React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { PageHero } from '../../components'
 import { IoAlertCircle } from 'react-icons/io5'

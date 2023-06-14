@@ -1,7 +1,7 @@
 import { BsLightningFill } from 'react-icons/bs'
 import NavButton from './NavButton'
 import { useGlobalContext } from '../context'
-const Sidebar = () => {
+const Sidebar = (): JSX.Element => {
   const { isModalOpen, closeModal } = useGlobalContext()
   return (
     <div

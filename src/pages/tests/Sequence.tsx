@@ -31,13 +31,6 @@ interface TestProps {
   }
 }
 const Sequence = ({ setGameStatus, gameStatus }: TestProps) => {
-  // const [gameStatus, setGameStatus] = useState({
-  //   isReady: false,
-  //   showResult: false,
-  //   title: 'sequence memory',
-  //   subtitle: 'Remember an increasingly long pattern of button presses.',
-  //   background: 'bg-background-blue-200'
-  // })
   const [sequence, setSequence] = useState<number[]>([])
   const [rounds, setRounds] = useState<number>(0)
   const [sequenceClick, setSequenceClick] = useState<number>(0)
@@ -56,7 +49,6 @@ const Sequence = ({ setGameStatus, gameStatus }: TestProps) => {
     setSequenceClick(0)
   }, [rounds])
   useEffect(() => {
-    // setGameStart(true)
     setRounds(1)
   }, [])
   function generateSequence(amount: number) {
