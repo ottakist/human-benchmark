@@ -3,8 +3,9 @@ import NavButton from './NavButton'
 import { BsLightningFill } from 'react-icons/bs'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useGlobalContext } from '../context'
-
+import { useAuth0 } from '@auth0/auth0-react'
 const Navbar = (): JSX.Element => {
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0()
   const { openModal } = useGlobalContext()
   return (
     <div className='bg-white shadow-xl shadow-black tablet:shadow-none'>
@@ -32,21 +33,27 @@ const Navbar = (): JSX.Element => {
         </div>
         <div className='hidden tablet:inline-block'>
           <div className='flex'>
-            <NavButton
-              values={{
-                title: 'login',
-                icon: undefined
-              }}
-            />
-            <NavButton
-              values={{
-                title: 'sign in',
-                icon: undefined
-              }}
-            />
+            {!isAuthenticated ? (
+              <>
+                <NavButton
+                  values={{
+                    action: async () => await loginWithRedirect(),
+                    title: 'login',
+                    icon: undefined
+                  }}
+                />
+              </>
+            ) : (
+              <NavButton
+                values={{
+                  action: async () => logout(),
+                  title: 'LogOut',
+                  icon: undefined
+                }}
+              />
+            )}
           </div>
         </div>
-        {/* {isSidebarOpen && <Sidebar/>} */}
       </nav>
     </div>
   )
