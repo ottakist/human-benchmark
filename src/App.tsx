@@ -13,9 +13,6 @@ function App(): JSX.Element {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/tests/:testName' element={<Test />} />
-          {/* <Route path='/tests/reaction' element={<Reaction />} />
-          <Route path='/tests/sequence' element={<Sequence />} />
-          <Route path='/tests/aim' element={<Aim />} /> */}
           <Route
             path='/dashboard'
             element={

@@ -1,24 +1,33 @@
-import { redirect } from 'react-router-dom'
+import type React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { PageHero } from '../components'
-
-const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+import { BiErrorAlt } from 'react-icons/bi'
+const PrivateRoute = ({
+  children
+}: {
+  children: React.ReactNode
+}): JSX.Element => {
   const { isAuthenticated } = useAuth0()
-
+  console.log(isAuthenticated)
+  const navigate = useNavigate()
   if (!isAuthenticated) {
+    setTimeout(() => {
+      navigate('/')
+    }, 2000)
     return (
       <>
         <PageHero
           title={'Please login first'}
-          icon={[]}
+          icon={[BiErrorAlt]}
           background={'bg-background-blue-200'}
           subString={''}
           action={null}
-          button={() => redirect('/')}
+          button={null}
         />
       </>
     )
   }
-  return children
+  return <>{children}</>
 }
 export default PrivateRoute
