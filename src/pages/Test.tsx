@@ -31,7 +31,7 @@ const Test = () => {
 
   function loadComponent(name: string) {
     const DynamicComponent = React.lazy(async () => {
-      const module = await import(`./tests/${name}.tsx`)
+      const module = await import(`../components/tests/${name}.tsx`)
       return { default: module.default }
     })
     setComponent(() => DynamicComponent)

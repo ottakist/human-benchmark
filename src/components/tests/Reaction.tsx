@@ -1,6 +1,6 @@
 import type React from 'react'
 import { useEffect, useRef, useState } from 'react'
-import { PageHero } from '../../components'
+import { PageHero } from '..'
 import { IoAlertCircle } from 'react-icons/io5'
 import { ImClock2 } from 'react-icons/im'
 import { BsCircleFill } from 'react-icons/bs'

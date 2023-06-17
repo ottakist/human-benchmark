@@ -1,8 +1,10 @@
 import { BsLightningFill } from 'react-icons/bs'
 import NavButton from './NavButton'
 import { useGlobalContext } from '../context'
+import { useAuth0 } from '@auth0/auth0-react'
 const Sidebar = (): JSX.Element => {
   const { isModalOpen, closeModal } = useGlobalContext()
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0()
   return (
     <div
       onClick={() => closeModal()}
@@ -23,18 +25,25 @@ const Sidebar = (): JSX.Element => {
             icon: undefined
           }}
         />
-        <NavButton
-          values={{
-            title: 'sign in',
-            icon: undefined
-          }}
-        />
-        <NavButton
-          values={{
-            title: 'login',
-            icon: undefined
-          }}
-        />
+        {!isAuthenticated ? (
+          <>
+            <NavButton
+              values={{
+                action: async () => await loginWithRedirect(),
+                title: 'login',
+                icon: undefined
+              }}
+            />
+          </>
+        ) : (
+          <NavButton
+            values={{
+              action: async () => logout(),
+              title: 'LogOut',
+              icon: undefined
+            }}
+          />
+        )}
       </aside>
     </div>
   )
