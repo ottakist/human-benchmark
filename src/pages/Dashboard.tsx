@@ -1,5 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { DashStats, DashUser } from '../components'
+import { useEffect, useState } from 'react'
+import { getUserById } from '../firebase'
 // database awaited
 const testData: Array<{
   test: string
@@ -28,9 +30,29 @@ const testData: Array<{
 ]
 const Dashboard = () => {
   const { user } = useAuth0()
+  const [userData, setUserData] = useState({
+    name: '',
+    createdAt: 0
+  })
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userById = await getUserById(user?.sub ?? '1')
+      if (userById) {
+        setUserData({
+          name: userById.name,
+          createdAt: userById?.createdAt?.toDate().getTime()
+        })
+      } else {
+        console.log('User not found')
+      }
+    }
+
+    void fetchUserData()
+    console.log('in dash', userData.createdAt)
+  }, [user])
   return (
     <main className='container pt-5'>
-      <DashUser user={user} />
+      <DashUser {...userData} />
       <DashStats testData={testData} />
     </main>
   )

@@ -1,10 +1,17 @@
 import { Navbar, Sidebar } from './components'
 import { Home, Error, Dashboard } from './pages'
 import Test from './pages/Test'
-// import { Aim, Reaction, Sequence } from './pages/tests'
 import PrivateRoute from './pages/PrivateRoute'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { createUser } from './firebase'
+import { useEffect } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
 function App(): JSX.Element {
+  const { user } = useAuth0()
+  useEffect(() => {
+    void createUser(user?.sub, user?.name ?? user?.nickname)
+  }, [user])
+
   return (
     <>
       <BrowserRouter>
