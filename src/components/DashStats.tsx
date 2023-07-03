@@ -4,7 +4,7 @@ const DashStats = ({
   testData: Array<{
     test: string
     actions: string
-    score: string
+    score: number[]
     percentile: number
   }>
 }) => {
@@ -34,9 +34,9 @@ const DashStats = ({
               </td>
               <td className='p-3'>
                 <div className='text-3xl  font-bold'>
-                  {data.score.split(' ')[0]}{' '}
+                  {data.score[0].toString().split(' ')[0]}{' '}
                   <span className='text-base font-normal'>
-                    {data.score.split(' ')[1]}
+                    {data.score[0].toString().split(' ')[1]}
                   </span>
                 </div>
               </td>

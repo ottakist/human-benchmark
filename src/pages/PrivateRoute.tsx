@@ -8,10 +8,9 @@ const PrivateRoute = ({
 }: {
   children: React.ReactNode
 }): JSX.Element => {
-  const { isAuthenticated } = useAuth0()
-  console.log(isAuthenticated)
+  const { isAuthenticated, isLoading } = useAuth0()
   const navigate = useNavigate()
-  if (!isAuthenticated) {
+  if (!isLoading && !isAuthenticated) {
     setTimeout(() => {
       navigate('/')
     }, 2000)
