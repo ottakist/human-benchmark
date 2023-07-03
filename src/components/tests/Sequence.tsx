@@ -1,6 +1,8 @@
 import { BsFillSquareFill } from 'react-icons/bs'
 import { useEffect, useState } from 'react'
 import { type IconType } from 'react-icons'
+import { updateUserFields } from '../../firebase'
+import { useAuth0 } from '@auth0/auth0-react'
 const arr = [
   [1, 2, 3],
   [4, 5, 6],
@@ -35,6 +37,7 @@ const Sequence = ({ setGameStatus, gameStatus }: TestProps) => {
   const [rounds, setRounds] = useState<number>(0)
   const [sequenceClick, setSequenceClick] = useState<number>(0)
   const [squareIndex, setSquareIndex] = useState<number>(0)
+  const { user } = useAuth0()
   useEffect(() => {
     setGameStatus((prevGameStatus) => ({ ...prevGameStatus, isReady: false }))
     if (sequence.length > 0) {
@@ -101,6 +104,7 @@ const Sequence = ({ setGameStatus, gameStatus }: TestProps) => {
         background: 'bg-background-blue-200',
         subtitle: 'Click button to restart'
       }))
+      void updateUserFields(user?.sub ?? '1', 'Sequence Test', [rounds], 388)
       setSequence([])
     }
   }

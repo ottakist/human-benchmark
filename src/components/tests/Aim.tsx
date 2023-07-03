@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { type IconType } from 'react-icons'
 import { FiTarget } from 'react-icons/fi'
+import { updateUserFields } from '../../firebase'
+import { useAuth0 } from '@auth0/auth0-react'
 interface TestProps {
   setGameStatus: React.Dispatch<
     React.SetStateAction<{
@@ -19,6 +21,7 @@ const Aim = ({ setGameStatus }: TestProps) => {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [aimsCount, setAimsCount] = useState(30)
   const [time, setTime] = useState({ startTime: 0, endTime: 0 })
+  const { user } = useAuth0()
   useEffect(() => {
     if (aimsCount === 0) {
       setGameStatus((prevGameStatus) => ({
@@ -28,6 +31,12 @@ const Aim = ({ setGameStatus }: TestProps) => {
         showResult: true,
         background: 'bg-background-blue-200'
       }))
+      void updateUserFields(
+        user?.sub ?? '1',
+        'Aiming Test',
+        [Math.floor((time.endTime - time.startTime) / 30)],
+        388
+      )
     }
   }, [aimsCount])
   function startTimer(): void {

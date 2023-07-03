@@ -6,34 +6,36 @@ import { getUserById } from '../firebase'
 const testData: Array<{
   test: string
   actions: string
-  score: string
+  score: number[]
   percentile: number
 }> = [
   {
     test: 'Sequence Memory',
     actions: 'Stats',
-    score: '9.0 points',
+    score: [9.0, 2.3, 4.2, 2.3, 4.2],
     percentile: 38.8
   },
   {
     test: 'Aim Trainer',
     actions: 'Stats',
-    score: '490 ms',
+    score: [9.0, 2.3, 4.2, 2.3, 4.2],
     percentile: 38.5
   },
   {
     test: 'Reaction Time',
     actions: 'Stats',
-    score: '246 ms',
+    score: [9.0, 2.3, 4.2, 2.3, 4.2],
     percentile: 32.5
   }
 ]
 const Dashboard = () => {
   const { user } = useAuth0()
-  const [userData, setUserData] = useState({
-    name: '',
-    createdAt: 0
-  })
+  const [userData, setUserData] = useState<{ name: string; createdAt: number }>(
+    {
+      name: '',
+      createdAt: 0
+    }
+  )
   useEffect(() => {
     const fetchUserData = async () => {
       const userById = await getUserById(user?.sub ?? '1')

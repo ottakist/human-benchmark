@@ -5,6 +5,8 @@ import { IoAlertCircle } from 'react-icons/io5'
 import { ImClock2 } from 'react-icons/im'
 import { BsCircleFill } from 'react-icons/bs'
 import { type IconType } from 'react-icons'
+import { useAuth0 } from '@auth0/auth0-react'
+import { updateUserFields } from '../../firebase'
 interface TestProps {
   setGameStatus: React.Dispatch<
     React.SetStateAction<{
@@ -32,14 +34,10 @@ interface TestProps {
 const Reaction = ({ setGameStatus, gameStatus }: TestProps) => {
   const startTime = useRef<number>(0)
   const stopTime = useRef<number>(0)
-  const timeoutId = useRef<number>(0)
-  interface ChartData {
-    round: number
-    score: number
-    average: number
-  }
-  const [chartData, setChartData] = useState<ChartData[]>([])
+  const timeoutId = useRef<NodeJS.Timeout | undefined>(undefined)
+  const [resultData, setResultData] = useState<number[]>([])
   const [isReady, setIsReady] = useState(false)
+  const { user } = useAuth0()
   const [isStarted, setIsStarted] = useState(false)
   useEffect(() => {
     void startClick()
@@ -64,10 +62,9 @@ const Reaction = ({ setGameStatus, gameStatus }: TestProps) => {
       }, rnd)
     })
   }
-
   async function startClick() {
     setIsStarted(true)
-    chartData.length === 5 && setChartData([])
+    resultData.length === 5 && setResultData([])
     startTime.current = await getStartTime()
     setIsReady(true)
 
@@ -94,23 +91,29 @@ const Reaction = ({ setGameStatus, gameStatus }: TestProps) => {
         background: 'bg-background-blue-200'
       })
     } else {
-      setChartData((prevState) => [
-        ...prevState,
-        {
-          round: prevState.length + 1,
-          score: stopTime.current - startTime.current,
-          average: 273
-        }
-      ])
       setIsReady(false)
       setIsStarted(false)
-
+      setResultData((prev) => [...prev, stopTime.current - startTime.current])
+      if (resultData.length === 4) {
+        void updateUserFields(
+          user?.sub ?? '1',
+          'Reaction Test',
+          [
+            Math.floor(
+              resultData.reduce((cur, acc): number => {
+                return (cur += acc)
+              }, 0) / 5
+            )
+          ],
+          388
+        )
+      }
       setGameStatus({
         ...gameStatus,
         icon: [ImClock2],
         title: `${(stopTime.current - startTime.current).toString()} ms`,
         subtitle:
-          chartData.length === 4
+          resultData.length === 4
             ? 'Click button to restart'
             : 'Click to keep going',
         background: 'bg-background-blue-200'
@@ -125,8 +128,8 @@ const Reaction = ({ setGameStatus, gameStatus }: TestProps) => {
         icon={gameStatus.icon}
         title={gameStatus.title}
         subString={gameStatus.subtitle}
-        action={chartData.length === 5 ? null : handleClick}
-        button={chartData.length === 5 ? async () => await startClick() : null}
+        action={resultData.length === 5 ? null : handleClick}
+        button={resultData.length === 5 ? async () => await startClick() : null}
       />
     </>
   )
