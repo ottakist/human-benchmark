@@ -18,12 +18,12 @@ const firebaseApp = initializeApp({
 })
 
 const firestore = getFirestore(firebaseApp)
-export const createUser = async (userId = '1', name = 'user1') => {
+export const createUser = async (userId = '1', name = 'user1', email = '') => {
   const userRef = doc(firestore, 'users', userId)
 
   const userData = {
     name,
-    email: '',
+    email,
     createdAt: serverTimestamp()
   }
 
@@ -32,7 +32,7 @@ export const createUser = async (userId = '1', name = 'user1') => {
     // eslint-disable-next-line no-useless-return
     return
   } else {
-    await setDoc(userRef, userData)
+    await setDoc(userRef, userData, { merge: true })
   }
 }
 export const getUserById = async (userId: string) => {
@@ -55,7 +55,7 @@ export const getUserById = async (userId: string) => {
 export const updateUserFields = async (
   userId: string,
   testName: string,
-  score: number[],
+  score: string[],
   percentile: number
 ) => {
   const userRef = doc(firestore, 'users', userId)
@@ -71,6 +71,7 @@ export const updateUserFields = async (
     // If the test already exists, update the score and percentile values
     const updatedTestData = [...existingTestData]
     // Not sure how much data i want to store
+
     // if (updatedTestData[testIndex].score.length >= 5) {
     //   updatedTestData[testIndex].score.shift()
     // }

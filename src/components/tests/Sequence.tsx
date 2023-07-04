@@ -104,7 +104,12 @@ const Sequence = ({ setGameStatus, gameStatus }: TestProps) => {
         background: 'bg-background-blue-200',
         subtitle: 'Click button to restart'
       }))
-      void updateUserFields(user?.sub ?? '1', 'Sequence Test', [rounds], 388)
+      void updateUserFields(
+        user?.sub ?? '1',
+        'Sequence Test',
+        [`${rounds} points`],
+        388
+      )
       setSequence([])
     }
   }

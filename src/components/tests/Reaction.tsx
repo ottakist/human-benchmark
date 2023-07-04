@@ -99,11 +99,11 @@ const Reaction = ({ setGameStatus, gameStatus }: TestProps) => {
           user?.sub ?? '1',
           'Reaction Test',
           [
-            Math.floor(
+            `${Math.floor(
               resultData.reduce((cur, acc): number => {
                 return (cur += acc)
               }, 0) / 5
-            )
+            )} ms`
           ],
           388
         )

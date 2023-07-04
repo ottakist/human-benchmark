@@ -9,7 +9,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 function App(): JSX.Element {
   const { user } = useAuth0()
   useEffect(() => {
-    void createUser(user?.sub, user?.name ?? user?.nickname)
+    void createUser(user?.sub, user?.name ?? user?.nickname, user?.email)
   }, [user])
 
   return (

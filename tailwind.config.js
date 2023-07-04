@@ -6,7 +6,7 @@ export default {
   darkMode: 'class',
   theme: {
     fontFamily: {
-      sans: ['Helvetica', 'Arial', 'sans-serif']
+      sans: ['Nunito', 'Arial', 'sans-serif']
     },
     fontWeight: {
       thin: '100',
