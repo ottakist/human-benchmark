@@ -8,6 +8,7 @@ import TestInfoSection from './TestInfoSection'
 import Loading from './Loading'
 import DashUser from './DashUser'
 import DashStats from './DashStats'
+import DashActivity from './DashActivity'
 
 export {
   GameBtn,
@@ -19,5 +20,6 @@ export {
   TestInfoSection,
   Loading,
   DashUser,
-  DashStats
+  DashStats,
+  DashActivity
 }

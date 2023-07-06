@@ -1,13 +1,13 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { DashStats, DashUser } from '../components'
+import { DashActivity, DashStats, DashUser } from '../components'
 import { useEffect, useState } from 'react'
 import { getUserById } from '../firebase'
 const Dashboard = () => {
   const { user } = useAuth0()
   const [userData, setUserData] = useState<{ name: string; createdAt: number }>(
     {
-      name: '',
-      createdAt: 0
+      name: 'Guest',
+      createdAt: new Date().getTime()
     }
   )
   const [testData, setTestData] = useState<
@@ -15,6 +15,7 @@ const Dashboard = () => {
       testName: string
       score: string[]
       percentile: number
+      date: number
     }>
   >([])
   useEffect(() => {
@@ -37,6 +38,7 @@ const Dashboard = () => {
     <main className='container pt-5'>
       <DashUser {...userData} />
       <DashStats testData={testData} />
+      <DashActivity testData={testData} />
     </main>
   )
 }
