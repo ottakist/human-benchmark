@@ -10,32 +10,38 @@ const DashStats = ({
   }>
 }) => {
   return (
-    <section className='mt-5 block flex-1 bg-white p-7'>
+    <section className='mt-5 block flex-1 bg-white p-2 tablet:p-7'>
       <table className='table w-full'>
+        <thead>
+          <tr>
+            <th className='table-cell p-3 text-left font-sans text-xl text-text_black'>
+              Test
+            </th>
+            <th className='table-cell p-3 text-left font-sans text-xl text-text_black'>
+              Actions
+            </th>
+            <th className='flex items-center p-3 text-left font-sans text-xl text-text_black'>
+              Score
+              <BsInfoCircleFill
+                className=' ml-1 fill-gray-300'
+                title='Scores are calculated from the last 5 tests.'
+              />
+            </th>
+            <th className='table-cell p-3 text-left font-sans text-xl text-text_black'>
+              Percentile
+            </th>
+          </tr>
+        </thead>
         <tbody className=' table-row-group align-middle'>
-          <th className='table-cell p-3 text-left font-sans text-xl text-text_black'>
-            Test
-          </th>
-          <th className='table-cell p-3 text-left font-sans text-xl text-text_black'>
-            Actions
-          </th>
-          <th className='flex items-center p-3 text-left font-sans text-xl text-text_black'>
-            Score
-            <BsInfoCircleFill
-              className=' ml-1 fill-gray-300'
-              title='Scores are calculated from the last 5 tests.'
-            />
-          </th>
-          <th className='table-cell p-3 text-left font-sans text-xl text-text_black'>
-            Percentile
-          </th>
           {testData?.map((data, index) => (
             <tr className=' table-row odd:bg-background-gray-250' key={index}>
               <td className='p-3 font-sans text-xl font-bold text-text_black'>
                 {data.testName}
               </td>
               <td className='p-3 font-sans text-xl text-sky-500'>
-                <Link to={`tests/${data.testName.split(' ')[0].toLowerCase()}`}>
+                <Link
+                  to={`/tests/${data.testName.split(' ')[0].toLowerCase()}`}
+                >
                   Play
                 </Link>
               </td>
