@@ -56,8 +56,7 @@ export const updateUserFields = async (
   userId: string,
   testName: string,
   score: string[],
-  percentile: number,
-  date: number
+  percentile: number
 ) => {
   const userRef = doc(firestore, 'users', userId)
   const userSnapshot = await getDoc(userRef)
@@ -78,6 +77,7 @@ export const updateUserFields = async (
     // }
     updatedTestData[testIndex].score.push(...score)
     updatedTestData[testIndex].percentile = percentile
+    updatedTestData[testIndex].date.push(new Date().getTime())
 
     await updateDoc(userRef, {
       testData: updatedTestData
@@ -88,7 +88,7 @@ export const updateUserFields = async (
       testName,
       score,
       percentile,
-      date
+      date: [new Date().getTime()]
     }
 
     const updatedTestData = [...existingTestData, testData]

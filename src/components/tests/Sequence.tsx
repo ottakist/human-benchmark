@@ -108,8 +108,7 @@ const Sequence = ({ setGameStatus, gameStatus }: TestProps) => {
         user?.sub ?? '1',
         'Sequence Test',
         [`${rounds} points`],
-        388,
-        new Date().getTime()
+        388
       )
       setSequence([])
     }

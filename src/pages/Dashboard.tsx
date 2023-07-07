@@ -15,7 +15,7 @@ const Dashboard = () => {
       testName: string
       score: string[]
       percentile: number
-      date: number
+      date: number[]
     }>
   >([])
   useEffect(() => {
