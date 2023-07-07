@@ -35,8 +35,7 @@ const Aim = ({ setGameStatus }: TestProps) => {
         user?.sub ?? '1',
         'Aiming Test',
         [`${Math.floor((time.endTime - time.startTime) / 30)} ms`],
-        388,
-        new Date().getTime()
+        388
       )
     }
   }, [aimsCount])
