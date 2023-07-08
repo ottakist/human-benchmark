@@ -33,7 +33,7 @@ const Aim = ({ setGameStatus }: TestProps) => {
       }))
       void updateUserFields(
         user?.sub ?? '1',
-        'Aiming Test',
+        'Aim Test',
         [`${Math.floor((time.endTime - time.startTime) / 30)} ms`],
         388
       )
