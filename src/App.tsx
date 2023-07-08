@@ -3,7 +3,7 @@ import { Home, Error, Dashboard } from './pages'
 import Test from './pages/Test'
 import PrivateRoute from './pages/PrivateRoute'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import { createUser } from './firebase'
+import { createUser } from './firebase/functions'
 import { useEffect } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 function App(): JSX.Element {

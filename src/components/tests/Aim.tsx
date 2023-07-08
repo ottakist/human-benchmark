@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { type IconType } from 'react-icons'
 import { FiTarget } from 'react-icons/fi'
-import { updateUserFields } from '../../firebase'
+import { updateUserFields } from '../../firebase/functions'
 import { useAuth0 } from '@auth0/auth0-react'
 interface TestProps {
   setGameStatus: React.Dispatch<

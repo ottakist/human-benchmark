@@ -1,7 +1,7 @@
 import { BsFillSquareFill } from 'react-icons/bs'
 import { useEffect, useState } from 'react'
 import { type IconType } from 'react-icons'
-import { updateUserFields } from '../../firebase'
+import { updateUserFields } from '../../firebase/functions'
 import { useAuth0 } from '@auth0/auth0-react'
 const arr = [
   [1, 2, 3],

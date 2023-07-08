@@ -6,7 +6,7 @@ import { ImClock2 } from 'react-icons/im'
 import { BsCircleFill } from 'react-icons/bs'
 import { type IconType } from 'react-icons'
 import { useAuth0 } from '@auth0/auth0-react'
-import { updateUserFields } from '../../firebase'
+import { updateUserFields } from '../../firebase/functions'
 interface TestProps {
   setGameStatus: React.Dispatch<
     React.SetStateAction<{

@@ -1,4 +1,3 @@
-import { initializeApp } from 'firebase/app'
 import {
   doc,
   getDoc,
@@ -7,37 +6,25 @@ import {
   serverTimestamp,
   updateDoc
 } from 'firebase/firestore'
-const firebaseApp = initializeApp({
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
-})
-
+import { firebaseApp } from './init'
 const firestore = getFirestore(firebaseApp)
+
+// Create user
 export const createUser = async (userId = '1', name = 'user1', email = '') => {
   const userRef = doc(firestore, 'users', userId)
-
+  // Initialize user props
   const userData = {
     name,
     email,
     createdAt: serverTimestamp()
   }
-
   const userDoc = await getDoc(userRef)
-  if (userDoc.exists()) {
-    // eslint-disable-next-line no-useless-return
-    return
-  } else {
-    await setDoc(userRef, userData, { merge: true })
-  }
+  if (userDoc.exists()) return
+  await setDoc(userRef, userData, { merge: true })
 }
+// Receiving user data from store
 export const getUserById = async (userId: string) => {
   const userRef = doc(firestore, 'users', userId)
-
   try {
     const userSnapshot = await getDoc(userRef)
 
@@ -70,11 +57,6 @@ export const updateUserFields = async (
   if (testIndex !== -1) {
     // If the test already exists, update the score and percentile values
     const updatedTestData = [...existingTestData]
-    // Not sure how much data i want to store
-
-    // if (updatedTestData[testIndex].score.length >= 5) {
-    //   updatedTestData[testIndex].score.shift()
-    // }
     updatedTestData[testIndex].score.push(...score)
     updatedTestData[testIndex].percentile = percentile
     updatedTestData[testIndex].date.push(new Date().getTime())
@@ -90,7 +72,6 @@ export const updateUserFields = async (
       percentile,
       date: [new Date().getTime()]
     }
-
     const updatedTestData = [...existingTestData, testData]
 
     await updateDoc(userRef, {

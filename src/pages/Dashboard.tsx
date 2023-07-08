@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { DashActivity, DashStats, DashUser } from '../components'
 import { useEffect, useState } from 'react'
-import { getUserById } from '../firebase'
+import { getUserById } from '../firebase/functions'
 const Dashboard = () => {
   const { user } = useAuth0()
   const [userData, setUserData] = useState<{ name: string; createdAt: number }>(
