@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from 'react'
 import { Loading, PageHero, TestInfoSection } from '../components'
 import { BsLightningFill } from 'react-icons/bs'
-import { type Params, useParams } from 'react-router-dom'
+import { type Params, useParams, useNavigate } from 'react-router-dom'
 import { games } from '../utils/games'
 import { type IconType } from 'react-icons'
 
@@ -15,6 +15,7 @@ interface GameProps {
 const Test = () => {
   const { testName }: Readonly<Params<string>> = useParams()
   const [gameStart, setGameStart] = useState(false)
+  const navigate = useNavigate()
   const [gameStatus, setGameStatus] = useState({
     isReady: false,
     showResult: false,
@@ -61,6 +62,7 @@ const Test = () => {
             button={() => {
               setGameStatus({ ...gameStatus, showResult: false })
             }}
+            secondBtn={() => navigate('/dashboard')}
           />
         ) : (
           <Suspense fallback={<Loading />}>
@@ -82,6 +84,7 @@ const Test = () => {
             setGameStart(true)
           }}
           background='bg-background-blue-200'
+          secondBtn={undefined}
         />
       )}
       <TestInfoSection about={about} chart={chart} />

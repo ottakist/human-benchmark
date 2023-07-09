@@ -6,6 +6,7 @@ interface hero {
   subString: string
   action: (() => void) | null
   button: (() => void) | null
+  secondBtn: (() => void) | undefined
 }
 const PageHero = ({
   icon,
@@ -13,6 +14,7 @@ const PageHero = ({
   background,
   title,
   subString,
+  secondBtn,
   button
 }: hero): JSX.Element => {
   return (
@@ -40,14 +42,24 @@ const PageHero = ({
           </h1>
           <h2 className='text-[28px] tablet:text-[24px]'>{subString}</h2>
         </div>
-        {typeof button === 'function' && (
-          <button
-            onClick={button}
-            className='mx-auto mt-[30px] block w-fit rounded-[3px] bg-background-yellow px-8 py-3 text-lg font-[600]  text-text_black duration-200 hover:bg-white'
-          >
-            Get Started
-          </button>
-        )}
+        <div className='flex'>
+          {typeof button === 'function' && (
+            <button
+              onClick={button}
+              className='mx-1  mt-[30px] block w-fit rounded-[3px] bg-background-yellow px-8 py-3 text-lg font-[600]  text-text_black duration-200 hover:bg-white'
+            >
+              Get Started
+            </button>
+          )}
+          {secondBtn && (
+            <button
+              onClick={secondBtn}
+              className='mx-1 mt-[30px] block w-fit rounded-[3px] bg-white bg-opacity-50 px-8 py-3 text-lg font-[600]  text-text_black duration-200 hover:bg-opacity-100'
+            >
+              Save Result
+            </button>
+          )}
+        </div>
       </div>
     </main>
   )

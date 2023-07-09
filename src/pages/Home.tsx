@@ -12,6 +12,7 @@ const Home = () => {
         subString='Measure your abilities with brain games and cognitive tests.'
         action={null}
         background='bg-background-blue-200'
+        secondBtn={undefined}
         button={() => navigate('tests/reaction')}
       />
       <GamesTable />
