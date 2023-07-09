@@ -14,7 +14,6 @@ const Dashboard = () => {
     Array<{
       testName: string
       score: string[]
-      percentile: number
       date: number[]
     }>
   >([])

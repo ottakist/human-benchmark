@@ -6,7 +6,6 @@ const DashActivity = ({
     testName: string
     score: string[]
     date: number[]
-    percentile: number
   }>
 }) => {
   const calculateDelay = (time: number) => useTimePassed(time)

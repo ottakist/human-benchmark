@@ -4,7 +4,9 @@ import {
   getFirestore,
   setDoc,
   serverTimestamp,
-  updateDoc
+  updateDoc,
+  collection,
+  getDocs
 } from 'firebase/firestore'
 import { firebaseApp } from './init'
 const firestore = getFirestore(firebaseApp)
@@ -38,12 +40,11 @@ export const getUserById = async (userId: string) => {
     console.error('Error fetching user', error)
   }
 }
-
+// need to remove percentile from db
 export const updateUserFields = async (
   userId: string,
   testName: string,
-  score: string[],
-  percentile: number
+  score: string[]
 ) => {
   const userRef = doc(firestore, 'users', userId)
   const userSnapshot = await getDoc(userRef)
@@ -53,12 +54,10 @@ export const updateUserFields = async (
   const testIndex = existingTestData.findIndex(
     (test: any) => test.testName === testName
   )
-
   if (testIndex !== -1) {
     // If the test already exists, update the score and percentile values
     const updatedTestData = [...existingTestData]
     updatedTestData[testIndex].score.push(...score)
-    updatedTestData[testIndex].percentile = percentile
     updatedTestData[testIndex].date.push(new Date().getTime())
 
     await updateDoc(userRef, {
@@ -69,7 +68,6 @@ export const updateUserFields = async (
     const testData = {
       testName,
       score,
-      percentile,
       date: [new Date().getTime()]
     }
     const updatedTestData = [...existingTestData, testData]
@@ -78,4 +76,61 @@ export const updateUserFields = async (
       testData: updatedTestData
     })
   }
+}
+
+async function calculateAverageResult(testName: string) {
+  const usersRef = collection(firestore, 'users')
+
+  try {
+    // Retrieve the data for all users
+    const usersSnapshot = await getDocs(usersRef)
+
+    // Extract the relevant results for calculation
+    const scores: any[] = []
+    usersSnapshot?.forEach((userDoc) => {
+      const testData = userDoc.get('testData')
+      testData?.forEach((test: { score: number; testName: string }) => {
+        scores.push({ score: test.score, name: test.testName })
+      })
+    })
+    const averageScores: Array<{ name: string; score: number }> = []
+    scores.forEach((score) => {
+      averageScores.push({
+        name: score.name,
+        score:
+          score.score
+            .map((score: string) => parseInt(score, 10))
+            .reduce((acc: number, cur: number) => acc + cur, 0) /
+          score.score?.length
+      })
+    })
+    return averageScores.find((test) => test.name === testName)?.score ?? 100
+  } catch (error) {
+    console.error('Error calculating average result', error)
+  }
+}
+
+export async function calculatePercentageImprovement(
+  current: number,
+  name: string
+): Promise<number> {
+  const average = (await calculateAverageResult(name)) ?? 0
+  const difference = ((current * 100) / average) * 10
+  let improvement: number
+
+  switch (name) {
+    case 'Aim Test':
+    case 'Reaction Test':
+      improvement = difference < 1000 ? 1000 : 2000 - difference
+      break
+    case 'Sequence Test':
+      improvement = difference > 1000 ? 1000 : difference
+      break
+    default:
+      improvement = 0
+      break
+  }
+
+  const percentageImprovement = Math.floor(improvement)
+  return percentageImprovement
 }

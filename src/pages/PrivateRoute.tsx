@@ -23,6 +23,7 @@ const PrivateRoute = ({
           subString={''}
           action={null}
           button={null}
+          secondBtn={undefined}
         />
       </>
     )

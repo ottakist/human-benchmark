@@ -104,8 +104,7 @@ const Reaction = ({ setGameStatus, gameStatus }: TestProps) => {
                 return (cur += acc)
               }, 0) / 5
             )} ms`
-          ],
-          388
+          ]
         )
       }
       setGameStatus({

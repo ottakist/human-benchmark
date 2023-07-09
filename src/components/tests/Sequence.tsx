@@ -107,8 +107,7 @@ const Sequence = ({ setGameStatus, gameStatus }: TestProps) => {
       void updateUserFields(
         user?.sub ?? '1',
         'Sequence Test',
-        [`${rounds} points`],
-        388
+        [`${rounds} points`]
       )
       setSequence([])
     }
