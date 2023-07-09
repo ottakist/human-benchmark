@@ -95,17 +95,13 @@ const Reaction = ({ setGameStatus, gameStatus }: TestProps) => {
       setIsStarted(false)
       setResultData((prev) => [...prev, stopTime.current - startTime.current])
       if (resultData.length === 4) {
-        void updateUserFields(
-          user?.sub ?? '1',
-          'Reaction Test',
-          [
-            `${Math.floor(
-              resultData.reduce((cur, acc): number => {
-                return (cur += acc)
-              }, 0) / 5
-            )} ms`
-          ]
-        )
+        void updateUserFields(user?.sub ?? '1', 'Reaction Test', [
+          `${Math.floor(
+            resultData.reduce((cur, acc): number => {
+              return (cur += acc)
+            }, 0) / 5
+          )} ms`
+        ])
       }
       setGameStatus({
         ...gameStatus,
@@ -129,6 +125,7 @@ const Reaction = ({ setGameStatus, gameStatus }: TestProps) => {
         subString={gameStatus.subtitle}
         action={resultData.length === 5 ? null : handleClick}
         button={resultData.length === 5 ? async () => await startClick() : null}
+        secondBtn={undefined}
       />
     </>
   )
