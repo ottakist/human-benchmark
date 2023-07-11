@@ -1,38 +1,20 @@
 import { BsFillSquareFill } from 'react-icons/bs'
 import { useEffect, useState } from 'react'
-import { type IconType } from 'react-icons'
 import { updateUserFields } from '../../firebase/functions'
+import { type TestType } from '../../common/testTypes'
 import { useAuth0 } from '@auth0/auth0-react'
 const arr = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9]
 ]
-interface TestProps {
-  setGameStatus: React.Dispatch<
-    React.SetStateAction<{
-      isReady: boolean
-      showResult: boolean
-      title: string
-      subtitle: string
-      background: string
-      icon?: IconType[]
-      action?: () => void
-      button?: () => void
-    }>
-  >
-  gameStatus: {
-    isReady: boolean
-    showResult: boolean
-    title: string
-    subtitle: string
-    icon: IconType[]
-    action: () => void
-    button: () => void
-    background: string
-  }
-}
-const Sequence = ({ setGameStatus, gameStatus }: TestProps) => {
+const Sequence = ({
+  setGameStatus,
+  gameStatus
+}: {
+  setGameStatus: React.Dispatch<React.SetStateAction<TestType>>
+  gameStatus: TestType
+}) => {
   const [sequence, setSequence] = useState<number[]>([])
   const [rounds, setRounds] = useState<number>(0)
   const [sequenceClick, setSequenceClick] = useState<number>(0)

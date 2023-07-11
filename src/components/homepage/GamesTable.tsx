@@ -1,5 +1,5 @@
 import GameBtn from './GameBtn'
-import { games } from '../utils/games'
+import { games } from '../../utils/games'
 const GamesTable = () => {
   return (
     <section className=' bg-background-gray-500  tablet:p-[20px] '>

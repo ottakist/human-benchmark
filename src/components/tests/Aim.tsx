@@ -1,23 +1,10 @@
 import { useEffect, useState } from 'react'
-import { type IconType } from 'react-icons'
 import { FiTarget } from 'react-icons/fi'
 import { updateUserFields } from '../../firebase/functions'
 import { useAuth0 } from '@auth0/auth0-react'
-interface TestProps {
-  setGameStatus: React.Dispatch<
-    React.SetStateAction<{
-      isReady: boolean
-      showResult: boolean
-      title: string
-      subtitle: string
-      background: string
-      icon?: IconType[]
-      action?: () => void
-      button?: () => void
-    }>
-  >
-}
-const Aim = ({ setGameStatus }: TestProps) => {
+import { type TestType } from '../../common/testTypes'
+
+const Aim = ({ setGameStatus }: { setGameStatus: React.Dispatch<React.SetStateAction<TestType>> }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [aimsCount, setAimsCount] = useState(30)
   const [time, setTime] = useState({ startTime: 0, endTime: 0 })
@@ -31,24 +18,20 @@ const Aim = ({ setGameStatus }: TestProps) => {
         showResult: true,
         background: 'bg-background-blue-200'
       }))
-      void updateUserFields(
-        user?.sub ?? '1',
-        'Aim Test',
-        [`${Math.floor((time.endTime - time.startTime) / 30)} ms`]
-      )
+      void updateUserFields(user?.sub ?? '1', 'Aim Test', [
+        `${Math.floor((time.endTime - time.startTime) / 30)} ms`
+      ])
     }
   }, [aimsCount])
   function startTimer(): void {
-    const startTime = new Date().getTime()
     setTime((prevTime) => {
-      return { ...prevTime, startTime }
+      return { ...prevTime, startTime: new Date().getTime() }
     })
   }
 
   function stopTimer(): void {
-    const endTime = new Date().getTime()
     setTime((prevTime) => {
-      return { ...prevTime, endTime }
+      return { ...prevTime, endTime: new Date().getTime() }
     })
   }
   function moveTarget() {

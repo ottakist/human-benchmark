@@ -1,7 +1,4 @@
-interface chartData {
-  chart: string
-}
-const DashChart = ({ chart }: chartData) => {
+const DashChart = ({ chart }: { chart: string }) => {
   return (
     <aside
       id='chart'
@@ -12,5 +9,4 @@ const DashChart = ({ chart }: chartData) => {
     </aside>
   )
 }
-
 export default DashChart

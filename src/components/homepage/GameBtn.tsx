@@ -1,10 +1,5 @@
-import { type IconType } from 'react-icons'
 import { Link } from 'react-router-dom'
-interface btnProps {
-  icon: IconType
-  title: string
-  subtitle: string
-}
+import { type btnProps } from '../../common/homeTypes'
 
 const GameBtn = ({ icon: Icon, title, subtitle }: btnProps) => {
   return (

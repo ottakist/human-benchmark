@@ -1,6 +1,6 @@
 import { BsLightningFill } from 'react-icons/bs'
 import NavButton from './NavButton'
-import { useGlobalContext } from '../context'
+import { useGlobalContext } from '../../context'
 import { useAuth0 } from '@auth0/auth0-react'
 const Sidebar = (): JSX.Element => {
   const { isModalOpen, closeModal } = useGlobalContext()

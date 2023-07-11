@@ -2,6 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { DashActivity, DashStats, DashUser } from '../components'
 import { useEffect, useState } from 'react'
 import { getUserById } from '../firebase/functions'
+import { type TestType } from '../common/dashTypes'
 const Dashboard = () => {
   const { user } = useAuth0()
   const [userData, setUserData] = useState<{ name: string; createdAt: number }>(
@@ -10,13 +11,7 @@ const Dashboard = () => {
       createdAt: new Date().getTime()
     }
   )
-  const [testData, setTestData] = useState<
-    Array<{
-      testName: string
-      score: string[]
-      date: number[]
-    }>
-  >([])
+  const [testData, setTestData] = useState<TestType[]>([])
   useEffect(() => {
     const fetchUserData = async () => {
       const userById = await getUserById(user?.sub ?? '1')
@@ -41,5 +36,4 @@ const Dashboard = () => {
     </main>
   )
 }
-
 export default Dashboard

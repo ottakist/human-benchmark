@@ -4,34 +4,16 @@ import { PageHero } from '..'
 import { IoAlertCircle } from 'react-icons/io5'
 import { ImClock2 } from 'react-icons/im'
 import { BsCircleFill } from 'react-icons/bs'
-import { type IconType } from 'react-icons'
 import { useAuth0 } from '@auth0/auth0-react'
 import { updateUserFields } from '../../firebase/functions'
-interface TestProps {
-  setGameStatus: React.Dispatch<
-    React.SetStateAction<{
-      isReady: boolean
-      showResult: boolean
-      title: string
-      subtitle: string
-      background: string
-      icon?: IconType[]
-      action?: () => void
-      button?: () => void
-    }>
-  >
-  gameStatus: {
-    isReady: boolean
-    showResult: boolean
-    title: string
-    subtitle: string
-    icon: IconType[]
-    action: () => void
-    button: () => void
-    background: string
-  }
-}
-const Reaction = ({ setGameStatus, gameStatus }: TestProps) => {
+import { type TestType } from '../../common/testTypes'
+const Reaction = ({
+  setGameStatus,
+  gameStatus
+}: {
+  setGameStatus: React.Dispatch<React.SetStateAction<TestType>>
+  gameStatus: TestType
+}) => {
   const startTime = useRef<number>(0)
   const stopTime = useRef<number>(0)
   const timeoutId = useRef<NodeJS.Timeout | undefined>(undefined)

@@ -1,8 +1,7 @@
 import NavButton from './NavButton'
-
 import { BsLightningFill } from 'react-icons/bs'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import { useGlobalContext } from '../context'
+import { useGlobalContext } from '../../context'
 import { useAuth0 } from '@auth0/auth0-react'
 const Navbar = (): JSX.Element => {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0()

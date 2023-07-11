@@ -1,4 +1,4 @@
-import useTimePassed from '../hooks/useTimePassed'
+import useTimePassed from '../../hooks/useTimePassed'
 const DashUser = ({ name, createdAt }: { name: string; createdAt: number }) => {
   const timePassed = useTimePassed(createdAt)
 

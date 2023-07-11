@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom'
 import { BsInfoCircleFill } from 'react-icons/bs'
-import { calculatePercentageImprovement } from '../firebase/functions'
+import { calculatePercentageImprovement } from '../../firebase/functions'
 import { useEffect, useState } from 'react'
+import { type TestType } from '../../common/dashTypes'
 const DashStats = ({
   testData
 }: {
-  testData: Array<{
-    testName: string
-    score: string[]
-  }>
+  testData: TestType[]
 }) => {
   const calculateUserAverage = (arr: {
     testName: string

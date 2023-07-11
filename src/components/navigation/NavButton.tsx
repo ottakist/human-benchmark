@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useGlobalContext } from '../context'
-interface buttonProps {
-  values: { title: string; icon?: JSX.Element; action?: () => Promise<void> }
-}
+import { useGlobalContext } from '../../context'
+import { type buttonProps } from '../../common/navTypes'
 const NavButton = ({ values }: buttonProps): JSX.Element => {
   const { closeModal, activePage, setActivePage } = useGlobalContext()
   if (values.action) {
@@ -12,7 +10,7 @@ const NavButton = ({ values }: buttonProps): JSX.Element => {
           closeModal()
           void values.action?.()
         }}
-        className={`flex items-center px-[12px]  py-[15px] font-sans  text-[18px] uppercase leading-[18px] ${
+        className={`flex items-center w-full px-[12px]  py-[15px] font-sans  text-[18px] uppercase leading-[18px] ${
           activePage === values.title ? 'bg-background-gray-300' : 'bg-white'
         }
          duration-200 hover:bg-background-gray-300

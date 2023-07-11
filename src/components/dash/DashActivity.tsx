@@ -1,12 +1,9 @@
-import useTimePassed from '../hooks/useTimePassed'
+import { type TestType } from '../../common/dashTypes'
+import useTimePassed from '../../hooks/useTimePassed'
 const DashActivity = ({
   testData
 }: {
-  testData: Array<{
-    testName: string
-    score: string[]
-    date: number[]
-  }>
+  testData: TestType[]
 }) => {
   const calculateDelay = (time: number) => useTimePassed(time)
   return (

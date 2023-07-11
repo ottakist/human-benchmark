@@ -1,13 +1,5 @@
-import { type IconType } from 'react-icons'
-interface hero {
-  title: string
-  icon: IconType[]
-  background: string
-  subString: string
-  action: (() => void) | null
-  button: (() => void) | null
-  secondBtn: (() => void) | undefined
-}
+import { type hero } from "../../common/sharedTypes"
+
 const PageHero = ({
   icon,
   action,
