@@ -9,3 +9,10 @@ export type TestType = {
   action?: () => void
   button?: () => void
 }
+export type GameProps = {
+  icon: IconType
+  title: string
+  subtitle: string
+  about: string[]
+  chart: string
+}

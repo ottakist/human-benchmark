@@ -1,9 +1,9 @@
 import { BsLightningFill } from 'react-icons/bs'
 import { HiSquares2X2 } from 'react-icons/hi2'
 import { FiTarget } from 'react-icons/fi'
-import AimChart from '../assets/AimChart.jpg'
-import ReactionChart from '../assets/ReactionChart.jpg'
-import SequenceChart from '../assets/SequenceChart.jpg'
+import AimChart from '../assets/AimChart.webp'
+import ReactionChart from '../assets/ReactionChart.webp'
+import SequenceChart from '../assets/SequenceChart.webp'
 const games = [
   {
     icon: BsLightningFill,
@@ -17,7 +17,7 @@ const games = [
       'This is discussed in further detail on the the statistics page. While an average human reaction time may fall between 200-250ms, your computer could be adding 10-50ms on top. Some modern TVs add as much as 150ms!',
       'If you want, you can keep track of your scores, and see your full history of reaction times. Just perform at least 5 clicks and then save.'
     ],
-    type: 'accuracy',
+    type: 'reaction',
     chart: ReactionChart
   },
   {
@@ -44,7 +44,7 @@ const games = [
       'Scores in this test are slower than the simple reaction time test, because you must react and then move the cursor.',
       'This test is best taken with a mouse or tablet screen. Trackpads are difficult to score well with.'
     ],
-    type: 'accuracy',
+    type: 'reaction',
     chart: AimChart
   }
 ]

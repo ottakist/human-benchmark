@@ -88,7 +88,7 @@ const Sequence = ({
       }))
       void updateUserFields(
         user?.sub ?? '1',
-        'Sequence Test',
+        'Sequence Memory',
         [`${rounds} points`]
       )
       setSequence([])

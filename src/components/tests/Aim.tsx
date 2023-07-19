@@ -4,7 +4,11 @@ import { updateUserFields } from '../../firebase/functions'
 import { useAuth0 } from '@auth0/auth0-react'
 import { type TestType } from '../../common/testTypes'
 
-const Aim = ({ setGameStatus }: { setGameStatus: React.Dispatch<React.SetStateAction<TestType>> }) => {
+const Aim = ({
+  setGameStatus
+}: {
+  setGameStatus: React.Dispatch<React.SetStateAction<TestType>>
+}) => {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [aimsCount, setAimsCount] = useState(30)
   const [time, setTime] = useState({ startTime: 0, endTime: 0 })
@@ -18,7 +22,7 @@ const Aim = ({ setGameStatus }: { setGameStatus: React.Dispatch<React.SetStateAc
         showResult: true,
         background: 'bg-background-blue-200'
       }))
-      void updateUserFields(user?.sub ?? '1', 'Aim Test', [
+      void updateUserFields(user?.sub ?? '1', 'Aim Trainer', [
         `${Math.floor((time.endTime - time.startTime) / 30)} ms`
       ])
     }

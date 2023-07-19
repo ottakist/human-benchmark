@@ -77,7 +77,7 @@ const Reaction = ({
       setIsStarted(false)
       setResultData((prev) => [...prev, stopTime.current - startTime.current])
       if (resultData.length === 4) {
-        void updateUserFields(user?.sub ?? '1', 'Reaction Test', [
+        void updateUserFields(user?.sub ?? '1', 'Reaction Time', [
           `${Math.floor(
             resultData.reduce((cur, acc): number => {
               return (cur += acc)

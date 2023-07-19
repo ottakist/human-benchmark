@@ -3,15 +3,8 @@ import { Loading, PageHero, TestInfoSection } from '../components'
 import { BsLightningFill } from 'react-icons/bs'
 import { type Params, useParams, useNavigate } from 'react-router-dom'
 import { games } from '../utils/games'
-import { type IconType } from 'react-icons'
+import { type GameProps } from '../common/testTypes'
 
-interface GameProps {
-  icon: IconType
-  title: string
-  subtitle: string
-  about: string[]
-  chart: string
-}
 const Test = () => {
   const { testName }: Readonly<Params<string>> = useParams()
   const [gameStart, setGameStart] = useState(false)

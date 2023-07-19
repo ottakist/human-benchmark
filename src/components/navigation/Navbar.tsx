@@ -24,6 +24,14 @@ const Navbar = (): JSX.Element => {
               }}
             />
           </div>
+          <div className='hidden tablet:inline-block'>
+            <NavButton
+              values={{
+                title: 'Leaderboard',
+                icon: undefined
+              }}
+            />
+          </div>
         </div>
         <div className='inline-block px-3 py-4 tablet:hidden'>
           <button onClick={() => openModal()}>

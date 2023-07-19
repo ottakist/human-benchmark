@@ -25,6 +25,12 @@ const Sidebar = (): JSX.Element => {
             icon: undefined
           }}
         />
+        <NavButton
+          values={{
+            title: 'leaderboard',
+            icon: undefined
+          }}
+        />
         {!isAuthenticated ? (
           <>
             <NavButton
