@@ -13,10 +13,15 @@ const LeaderBoard = () => {
     try {
       const data = await getUsersRatings(sortOption)
       if (data?.results !== undefined) {
-        usersData.sort((a, b) =>
-          data.type !== 'reaction' ? b.record - a.record : a.record - b.record
+        setUsersData(
+          data.results
+            .sort((a, b) =>
+              data.type !== 'reaction'
+                ? b.record - a.record
+                : a.record - b.record
+            )
+            .filter((data) => data.record !== 0)
         )
-        setUsersData(data.results)
       } else {
         setUsersData([])
       }

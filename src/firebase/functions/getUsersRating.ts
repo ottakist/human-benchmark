@@ -38,8 +38,7 @@ export const getUsersRatings = async (sortOption: string) => {
       const { type } = testSnapshot.data()
       console.log(type)
       const results = data.slice(0, 50).map((tests) => {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const record = tests.testData.find(
+        const record = tests.testData?.find(
           (test) => test.testName === sortOption
         )?.testRecord
         if (record === undefined) {
