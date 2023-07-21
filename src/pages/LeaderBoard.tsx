@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { getUsersRatings } from '../firebase/functions/getUsersRating'
+import { Link } from 'react-router-dom'
 const LeaderBoard = () => {
   const [usersData, setUsersData] = useState<
     Array<{
       userName: string
       userImage: string
       record: number
+      userId: string
     }>
   >([])
   const [sortOption, setSortOption] = useState('Aim Trainer')
@@ -32,11 +34,9 @@ const LeaderBoard = () => {
 
   useEffect(() => {
     void fetchUsersData()
-    console.log(usersData)
   }, [])
   useEffect(() => {
     void fetchUsersData()
-    console.log(sortOption)
   }, [sortOption])
   return (
     <main className='container pt-5'>
@@ -57,7 +57,8 @@ const LeaderBoard = () => {
           <div className=''>
             {usersData.map((user, index) => {
               return (
-                <div
+                <Link
+                  to={`/dashboard?${user.userId}`}
                   className='flex h-20 items-center justify-between py-3 pl-8 pr-6'
                   key={index}
                 >
@@ -75,7 +76,7 @@ const LeaderBoard = () => {
                   <span className=' mr-3 flex-grow text-right text-xl font-bold '>
                     {user.record}
                   </span>
-                </div>
+                </Link>
               )
             })}
           </div>

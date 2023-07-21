@@ -16,6 +16,7 @@ export const getUsersRatings = async (sortOption: string) => {
     userName: string
     userImage: string
     testData: Array<{ testName: string; testRecord: number }>
+    userId: string
   }>
 
   try {
@@ -25,6 +26,7 @@ export const getUsersRatings = async (sortOption: string) => {
       const testData = userDoc.get('testData')
       const userName = userDoc.get('name')
       const userImage = userDoc.get('image')
+      const userId = userDoc.get('id')
       const tempTestArray = testData?.map(
         (item: { testName: string; record: number }) => ({
           testName: item.testName,
@@ -32,7 +34,7 @@ export const getUsersRatings = async (sortOption: string) => {
         })
       )
 
-      data.push({ userName, userImage, testData: tempTestArray })
+      data.push({ userName, userImage, testData: tempTestArray, userId })
     })
     if (testSnapshot.exists()) {
       const { type } = testSnapshot.data()
@@ -45,10 +47,16 @@ export const getUsersRatings = async (sortOption: string) => {
           return {
             record: 0,
             userName: tests.userName,
-            userImage: tests.userImage
+            userImage: tests.userImage,
+            userId: tests.userId
           }
         }
-        return { record, userName: tests.userName, userImage: tests.userImage }
+        return {
+          record,
+          userName: tests.userName,
+          userImage: tests.userImage,
+          userId: tests.userId
+        }
       })
       return { results, type }
     }

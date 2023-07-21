@@ -22,7 +22,8 @@ export const createUser = async (
     name,
     email,
     createdAt: serverTimestamp(),
-    image
+    image,
+    id: userId
   }
   const userDoc = await getDoc(userRef)
   if (userDoc.exists()) return

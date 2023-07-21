@@ -3,8 +3,10 @@ import { DashActivity, DashStats, DashUser } from '../components'
 import { useEffect, useState } from 'react'
 import { getUserById } from '../firebase/functions'
 import { type TestType } from '../common/dashTypes'
+import { useParams } from 'react-router-dom'
 const Dashboard = () => {
   const { user } = useAuth0()
+  const { userId } = useParams()
   const [userData, setUserData] = useState<{ name: string; createdAt: number }>(
     {
       name: 'Guest',
@@ -13,8 +15,10 @@ const Dashboard = () => {
   )
   const [testData, setTestData] = useState<TestType[]>([])
   useEffect(() => {
+    console.log(userId)
     const fetchUserData = async () => {
-      const userById = await getUserById(user?.sub ?? '1')
+      const userLink = userId ?? user?.sub ?? '1'
+      const userById = await getUserById(userLink)
       if (userById) {
         setTestData(userById?.testData)
         setUserData({
@@ -27,7 +31,7 @@ const Dashboard = () => {
     }
 
     void fetchUserData()
-  }, [user])
+  }, [user, userId])
   return (
     <main className='container pt-5'>
       <DashUser {...userData} />
