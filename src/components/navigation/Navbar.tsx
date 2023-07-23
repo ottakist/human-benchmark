@@ -7,7 +7,7 @@ const Navbar = (): JSX.Element => {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0()
   const { openModal } = useGlobalContext()
   return (
-    <div className='bg-white shadow-xl shadow-black tablet:shadow-none'>
+    <div className='bg-white shadow-lg  shadow-gray-300 tablet:shadow-none'>
       <nav className='container flex items-start justify-between  px-[10px]  tablet:px-[20px]   '>
         <div className='flex items-center tablet:px-[20px]'>
           <NavButton
