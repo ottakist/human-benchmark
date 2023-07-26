@@ -86,11 +86,9 @@ const Sequence = ({
         background: 'bg-background-blue-200',
         subtitle: 'Click button to restart'
       }))
-      void updateUserFields(
-        user?.sub ?? '1',
-        'Sequence Memory',
-        [`${rounds} points`]
-      )
+      void updateUserFields(user?.sub ?? '1', 'Sequence Memory', [
+        `${rounds} points`
+      ])
       setSequence([])
     }
   }
@@ -122,7 +120,7 @@ const Sequence = ({
                         }
                       }}
                       key={square}
-                      className={` cursor-pointer  p-2 ${
+                      className={` m-[10px]  cursor-pointer ${
                         square === squareIndex
                           ? 'scale-100  fill-white opacity-100 transition-all duration-[50] ease-out '
                           : ' scale-100 fill-fill_blue_dark opacity-20  transition-all duration-[50] ease-out'
