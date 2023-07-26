@@ -1,4 +1,4 @@
-import { Navbar, Sidebar } from './components'
+import { Loading, Navbar, Sidebar } from './components'
 import PrivateRoute from './pages/PrivateRoute'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import { createUser } from './firebase/functions'
@@ -26,7 +26,7 @@ function App(): JSX.Element {
       <BrowserRouter>
         <Sidebar />
         <Navbar />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/tests/:testName' element={<Test />} />

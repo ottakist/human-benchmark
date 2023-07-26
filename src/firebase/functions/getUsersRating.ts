@@ -38,7 +38,6 @@ export const getUsersRatings = async (sortOption: string) => {
     })
     if (testSnapshot.exists()) {
       const { type } = testSnapshot.data()
-      console.log(type)
       const results = data.slice(0, 50).map((tests) => {
         const record = tests.testData?.find(
           (test) => test.testName === sortOption
