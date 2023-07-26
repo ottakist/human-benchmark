@@ -71,7 +71,7 @@ const LeaderBoard = () => {
             {usersData.map((user, index) => {
               return (
                 <Link
-                  to={`/dashboard?${user.userId}`}
+                  to={`/dashboard?userId=${user.userId}`}
                   className={`mt-2 flex h-20 flex-grow items-center justify-between rounded-md border-2 border-black px-6 py-3 ${
                     user.userId === userId
                       ? 'bg-gray-400 bg-opacity-40'

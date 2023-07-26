@@ -3,10 +3,12 @@ import { DashActivity, DashStats, DashUser } from '../components'
 import { useEffect, useState } from 'react'
 import { getUserById } from '../firebase/functions'
 import { type TestType } from '../common/dashTypes'
-import { useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 const Dashboard = () => {
   const { user } = useAuth0()
-  const { userId } = useParams()
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const userId = searchParams.get('userId')
   const [userData, setUserData] = useState<{ name: string; createdAt: number }>(
     {
       name: 'Guest',
@@ -15,7 +17,6 @@ const Dashboard = () => {
   )
   const [testData, setTestData] = useState<TestType[]>([])
   useEffect(() => {
-    console.log(userId)
     const fetchUserData = async () => {
       const userLink = userId ?? user?.sub ?? '1'
       const userById = await getUserById(userLink)
